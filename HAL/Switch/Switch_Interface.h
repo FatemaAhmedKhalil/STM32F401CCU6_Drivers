@@ -31,5 +31,5 @@ struct _Switch_
 #define RotarySwitch	5
 
 u8 PressedButton(SWITCH Switch);
-
+u8 Debounce(void);
 #endif
