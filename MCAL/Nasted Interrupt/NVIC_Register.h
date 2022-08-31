@@ -22,9 +22,9 @@ typedef struct
 	volatile u32 Reserved4[24];	
 	volatile u32 IABR[8];		// Interrupt active bit register
 	volatile u32 Reserved5[56];	
-	volatile u8	 IPR[240];		// Interrupt priority register
+	volatile u8  IPR[240];		// Interrupt priority register
 	volatile u32 Reserved6[400];
-	volatile u32 STIR;			// Software trigger interrupt register		
+	volatile u32 STIR;		// Software trigger interrupt register		
 }NVIC_MemoryMap;
 #define	NVIC			( (volatile NVIC_MemoryMap *)(NVIC_BaseAdress) )
 
@@ -37,7 +37,7 @@ typedef struct
 	u32 VTOR;		// Vector table offset register
 	u32 AIRCR;		// -> Application interrupt and reset control register <-
 	u32 SCR;		// System control register
-	u32	CCR;		// Configuration and control register
+	u32 CCR;		// Configuration and control register
 	u32 SHPR1;		// -> System handler priority registers 1 <-
 	u32 SHPR2;		// -> System handler priority registers 2 <-
 	u32 SHPR3;		// -> System handler priority registers 3 <-
