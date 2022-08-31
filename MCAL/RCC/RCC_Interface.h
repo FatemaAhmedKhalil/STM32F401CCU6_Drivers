@@ -10,9 +10,9 @@
 #define RCC_Interface
 
 /** Error States **/
-#define PerphiralRangeRCC	1
-#define BusRangeRCC			2
-#define ConfigPLLRCC		3
+#define ErrorPerphiralRangeRCC	1
+#define ErrorBusRangeRCC		2
+#define ErrorConfigPLLRCC		3
 
 
 u8 RCC_SystemClkInitialization (void);

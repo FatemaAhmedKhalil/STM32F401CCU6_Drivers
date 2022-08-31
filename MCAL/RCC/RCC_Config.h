@@ -93,6 +93,8 @@
 /*		...              																	*/
 /*		111110: PLLM = 62																	*/
 /*		111111: PLLM = 63																	*/
+/*																							*/
+/* NOTE: Check if there is an Error in Selected Value										*/
 /********************************************************************************************/
 #define DivisionPLLM		63
 
@@ -110,6 +112,8 @@
 /*		...																						*/
 /*		111111111: PLLN = 511, wrong configuration												*/
 /*		...																						*/
+/*																								*/
+/* NOTE: Check if there is an Error in Selected Value											*/
 /************************************************************************************************/
 #define MultiplicationPLLN	192
 
@@ -121,19 +125,23 @@
 /*		01: PLLP = 4															*/
 /*		10: PLLP = 6															*/
 /*		11: PLLP = 8															*/
+/*																				*/
+/* NOTE: Check if there is an Error in Selected Value							*/
 /********************************************************************************/
 #define DivisionPLLP	2
 
-/************************************************************************************************************************/
-/* Define  PLLSRC: Main PLL(PLL) and audio PLL (PLLI2S) entry clock source												*/
-/*					0: HSI clock selected as PLL and PLLI2S clock entry													*/
-/*					1: HSE oscillator clock selected as PLL and PLLI2S clock entry										*/
-/*																														*/
-/*			-	IF HSI oscillator clock selected:																		*/
-/*					Define the input Clock -> 16000000																	*/
-/*			-	IF HSE oscillator clock selected:																		*/
-/*					Define the input Clock -> as your system clock														*/
-/************************************************************************************************************************/
+/************************************************************************************************/
+/* Define  PLLSRC: Main PLL(PLL) and audio PLL (PLLI2S) entry clock source						*/
+/*					0: HSI clock selected as PLL and PLLI2S clock entry							*/
+/*					1: HSE oscillator clock selected as PLL and PLLI2S clock entry				*/
+/*																								*/
+/*			-	IF HSI oscillator clock selected:												*/
+/*					Define the input Clock -> 16000000											*/
+/*			-	IF HSE oscillator clock selected:												*/
+/*					Define the input Clock -> as your system clock								*/
+/*																								*/
+/* NOTE: Check if there is an Error in Selected Values											*/
+/************************************************************************************************/
 #define	PLLSource	 0
 #define Finput	25000000
 

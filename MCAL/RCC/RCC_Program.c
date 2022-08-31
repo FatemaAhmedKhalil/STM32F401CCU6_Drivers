@@ -262,7 +262,7 @@ u8 RCC_SystemClkInitialization (void)
 
 	if (Fpll > 84000000)	// Check Generated System Clock Range
 	{
-		ErrorState = ConfigPLLRCC;
+		ErrorState = ErrorConfigPLLRCC;
 		return ErrorState;
 	}
 
@@ -397,12 +397,12 @@ u8 RCC_Enable (u8 Bus, u8 Perphiral)
 			case AHB2: SET_BIT(RCC->AHB2ENR, Perphiral); break;
 			case APB1: SET_BIT(RCC->APB1ENR, Perphiral); break;
 			case APB2: SET_BIT(RCC->APB2ENR, Perphiral); break;
-			default: ErrorState = BusRangeRCC; break;
+			default: ErrorState = ErrorBusRangeRCC; break;
 		}
 	}
 	
 	else
-		ErrorState = PerphiralRangeRCC; // Out of Range
+		ErrorState = ErrorPerphiralRangeRCC; // Out of Range
 		
 	return ErrorState;
 }
@@ -418,12 +418,12 @@ u8 RCC_Disable(u8 Bus, u8 Perphiral)
 			case AHB2: CLR_BIT(RCC->AHB2ENR, Perphiral); break;
 			case APB1: CLR_BIT(RCC->APB1ENR, Perphiral); break;
 			case APB2: CLR_BIT(RCC->APB2ENR, Perphiral); break;
-			default: ErrorState = BusRangeRCC; break;
+			default: ErrorState = ErrorBusRangeRCC; break;
 		}
 	}
 	
 	else 
-		ErrorState = PerphiralRangeRCC; // Out of Range
+		ErrorState = ErrorPerphiralRangeRCC; // Out of Range
 	
 	return ErrorState;
 }
