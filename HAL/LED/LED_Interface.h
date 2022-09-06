@@ -34,6 +34,9 @@ struct _LED_
 #define Source	1
 #define Sink	0
 
+#define LED_High	1
+#define LED_Low	0
+
 void TurnLEDON(LED Led);
 void TurnLEDOFF(LED Led);
 
