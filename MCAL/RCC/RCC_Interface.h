@@ -63,41 +63,41 @@ u8 RCC_SystemClkInitialization (void);
 /* 				SDIO --> Perphiral = 11												*/
 /* 				SPI1 --> Perphiral = 12												*/
 /* 				SPI4 --> Perphiral = 13												*/
-/* 				SYSCFG --> Perphiral = 14											*/
+/* 				SYSCFG --> Perphiral = 14 (EXTI)									*/
 /* 				TIM9 --> Perphiral = 16												*/
 /* 				TIM10 --> Perphiral = 17											*/
 /* 				TIM11 --> Perphiral = 18											*/
 /************************************************************************************/
-#define GPIOA	 0
-#define GPIOB	 1
-#define GPIOC	 2
+#define RCC_GPIOA	 0
+#define RCC_GPIOB	 1
+#define RCC_GPIOC	 2
 
-#define OTGFS	7
+#define RCC_OTGFS	7
 
-#define TIM2	0
-#define TIM3	1
-#define TIM4	2
-#define TIM5	3
-#define WWDG	11
-#define SPI2	14
-#define SPI3	15
-#define USART2	17
-#define I2C1	21
-#define I2C2	22
-#define I2C3	23
-#define PWR		28
+#define RCC_TIM2	0
+#define RCC_TIM3	1
+#define RCC_TIM4	2
+#define RCC_TIM5	3
+#define RCC_WWDG	11
+#define RCC_SPI2	14
+#define RCC_SPI3	15
+#define RCC_USART2	17
+#define RCC_I2C1	21
+#define RCC_I2C2	22
+#define RCC_I2C3	23
+#define RCC_PWR		28
 
-#define TIM1	0
-#define USART1	4
-#define USART6	5
-#define ADC1	8
-#define SDIO	11
-#define SPI1	12
-#define SPI4	13
-#define SYSCFG	14
-#define TIM9	16
-#define TIM10	17
-#define TIM11	18
+#define RCC_TIM1	0
+#define RCC_USART1	4
+#define RCC_USART6	5
+#define RCC_ADC1	8
+#define RCC_SDIO	11
+#define RCC_SPI1	12
+#define RCC_SPI4	13
+#define RCC_SYSCFG	14
+#define RCC_TIM9	16
+#define RCC_TIM10	17
+#define RCC_TIM11	18
 
 u8 RCC_Enable (u8 Bus, u8 Perphiral);
 u8 RCC_Disable (u8 Bus, u8 Perphiral);

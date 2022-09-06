@@ -29,7 +29,7 @@ typedef struct
 #define	NVIC			( (volatile NVIC_MemoryMap *)(NVIC_BaseAdress) )
 
 
-#define SBC_BaseAdress			(u32)(0xE000ED00)	// SBC Base Address Starting from CPUID Register
+#define SCB_BaseAdress			(u32)(0xE000ED00)	// SBC Base Address Starting from CPUID Register
 typedef struct
 {
 	u32 CPUID;		// CPUID base register
@@ -48,7 +48,7 @@ typedef struct
 	u32 MMAR;		// Memory management fault address register
 	u32 BFAR;		// Bus fault address register
 	u32 AFSR;		// Auxiliary fault status register
-}SBC_MemoryMap;
-#define	SBC			( (volatile SBC_MemoryMap *)(SBC_BaseAdress) )
+}SCB_MemoryMap;
+#define	SCB			( (volatile SCB_MemoryMap *)(SCB_BaseAdress) )
 
 #endif

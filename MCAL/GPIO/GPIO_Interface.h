@@ -28,9 +28,9 @@
 #define Reset	0
 #define Set		1
 
-#define PORTA	1
-#define PORTB	2
-#define PORTC	3
+#define GPIO_A	1
+#define GPIO_B	2
+#define GPIO_C	3
 
 #define PIN0	0
 #define PIN1	1

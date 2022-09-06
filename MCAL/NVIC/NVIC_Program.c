@@ -47,19 +47,19 @@ u8 NVIC_SetPriority(u8 PRIGROUP, s8 InterruptVectorPosition, u8 GroupPriority, u
 	u8 ErrorState = 0;
 	
 	/** Check Ranges **/
-	if ( PRIGROUP = 0b011 && (GroupPriority > 15 || SubPriority > 0) )
+	if ( PRIGROUP == 0b011 && (GroupPriority > 15 || SubPriority > 0) )
 		ErrorState = ErrorGroupsORSubsRange;
 		
-	else if ( PRIGROUP = 0b100 && (GroupPriority > 7 || SubPriority > 1) )
+	else if ( PRIGROUP == 0b100 && (GroupPriority > 7 || SubPriority > 1) )
 		ErrorState = ErrorGroupsORSubsRange;
 		
-	else if ( PRIGROUP = 0b101 && (GroupPriority > 3 || SubPriority > 3) )
+	else if ( PRIGROUP == 0b101 && (GroupPriority > 3 || SubPriority > 3) )
 		ErrorState = ErrorGroupsORSubsRange;
 		
-	else if ( PRIGROUP = 0b110 && (GroupPriority > 1 || SubPriority > 7) )
+	else if ( PRIGROUP == 0b110 && (GroupPriority > 1 || SubPriority > 7) )
 		ErrorState = ErrorGroupsORSubsRange;
 		
-	else if ( PRIGROUP = 0b111 && (GroupPriority > 0 || SubPriority > 15) )
+	else if ( PRIGROUP == 0b111 && (GroupPriority > 0 || SubPriority > 15) )
 		ErrorState = ErrorGroupsORSubsRange;
 	
 	else 
@@ -71,17 +71,17 @@ u8 NVIC_SetPriority(u8 PRIGROUP, s8 InterruptVectorPosition, u8 GroupPriority, u
 		
 		if (InterruptVectorPosition < 0)	// Core Peripheral
 		{
-			if (InterruptVectorPosition == MemoryManagementFault || InterruptVectorPosition == BusFault || InterruptVectorPosition == UsageFault)
+			if (InterruptVectorPosition == NVIC_MemoryManagementFault || InterruptVectorPosition == NVIC_BusFault || InterruptVectorPosition == NVIC_UsageFault)
 			{
 				InterruptVectorPosition += 3;
 				SCB->SHPR1 = (Priority) << ((8 * InterruptVectorPosition) + 4);
 			}
-			else if (InterruptVectorPosition == SVCall)
+			else if (InterruptVectorPosition == NVIC_SVCall)
 			{
 				InterruptVectorPosition += 7;
 				SCB->SHPR2 = (Priority) << ((8 * InterruptVectorPosition) + 4);
 			}
-			else if (InterruptVectorPosition == PendSV || InterruptVectorPosition == SysTick)
+			else if (InterruptVectorPosition == NVIC_PendSV || InterruptVectorPosition == NVIC_SysTick)
 			{
 				InterruptVectorPosition += 8;
 				SCB->SHPR3 = (Priority) << ((8 * InterruptVectorPosition) + 4);
@@ -90,7 +90,7 @@ u8 NVIC_SetPriority(u8 PRIGROUP, s8 InterruptVectorPosition, u8 GroupPriority, u
 	
 		else if (InterruptVectorPosition >= 0)	// External Peripheral
 		{
-			MNVIC->IPR[InterruptVectorPosition] = Priority << 4;
+			NVIC->IPR[InterruptVectorPosition] = Priority << 4;
 		}
 	}
 	return ErrorState;
