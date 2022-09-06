@@ -36,9 +36,12 @@
 #define COMAnode	1
 #define COMCathode	0
 
-#define PORT_A	 1
-#define PORT_B	 2
-#define PORT_C	 3
+#define SEG_PORTA	 1
+#define SEG_PORTB	 2
+#define SEG_PORTC	 3
+
+#define SEG_HighValue	1
+#define SEG_LowValue	1
 
 void DisplaySevenSegment (u8 Number, u8 PORT, u8 PIN_PORT, u8 COM_PORT, u8 COM_PIN, u8 COM_Connection);
 

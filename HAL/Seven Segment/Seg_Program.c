@@ -17,11 +17,11 @@ void DisplaySevenSegment (u8 Number, u8 PORT, u8 PIN_PORT, u8 COM_PORT, u8 COM_P
 {
 	static u8 Seg[SegmentNumbers] = Seg_Array;
 
-	if ( (PORT == PORT_A && PIN_PORT <= 6) || (PORT == PORT_B && PIN_PORT <= 8) )
+	if ( (PORT == SEG_PORTA && PIN_PORT <= 6) || (PORT == SEG_PORTB && PIN_PORT <= 8) )
 	{
 		if (COM_Connection == COMAnode)	// Common Anode
 		{
-			GPIO_SetPinValue(COM_PORT, COM_PIN, PIN_HIGH);
+			GPIO_SetPinValue(COM_PORT, COM_PIN, SEG_HighValue);
 
 			// 8 Pins are ONLY used of the Port
 			GPIO_SetPinValue( PORT, PIN_PORT  , !GET_BIT(Seg[Number],0) ); // a
@@ -36,7 +36,7 @@ void DisplaySevenSegment (u8 Number, u8 PORT, u8 PIN_PORT, u8 COM_PORT, u8 COM_P
 
 		else if (COM_Connection == COMCathode)	// Common Cathode
 		{
-			GPIO_SetPinValue(COM_PORT, COM_PIN, PIN_LOW);
+			GPIO_SetPinValue(COM_PORT, COM_PIN, SEG_LowValue);
 
 			// 8 Pins are ONLY used of the Port
 			GPIO_SetPinValue( PORT, PIN_PORT  , GET_BIT(Seg[Number],0) ); // a
