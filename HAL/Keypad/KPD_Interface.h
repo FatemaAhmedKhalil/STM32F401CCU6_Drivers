@@ -9,6 +9,9 @@
 #ifndef KPD_Interface
 #define KPD_Interface
 
+#define KPD_Release	0
+#define KPD_Set		1
+#define KPD_Preseed	0
 u8 GetPressedKey (void);
 
 #endif
