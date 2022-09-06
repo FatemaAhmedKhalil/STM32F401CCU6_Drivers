@@ -41,7 +41,7 @@
 #define SEG_PORTC	 3
 
 #define SEG_HighValue	1
-#define SEG_LowValue	1
+#define SEG_LowValue	0
 
 void DisplaySevenSegment (u8 Number, u8 PORT, u8 PIN_PORT, u8 COM_PORT, u8 COM_PIN, u8 COM_Connection);
 
