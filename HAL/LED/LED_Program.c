@@ -16,18 +16,18 @@
 
 void TurnLEDON(LED Led)
 {
-	if (Led.Connection == Source)
-		GPIO_SetPinValue (Led.PORT, Led.PIN, LED_High);
+	if (Led.Connection == LED_Source)
+		GPIO_FastControlPinValue (Led.PORT, Led.PIN, Set);
 		
-	else if (Led.Connection == Sink)
-		GPIO_SetPinValue (Led.PORT, Led.PIN, LED_Low);
+	else if (Led.Connection == LED_Sink)
+		GPIO_FastControlPinValue (Led.PORT, Led.PIN, Reset);
 }
 
 void TurnLEDOFF(LED Led)
 {
-	if (Led.Connection == Source)
-		GPIO_SetPinValue (Led.PORT, Led.PIN, LED_Low);
+	if (Led.Connection == LED_Source)
+		GPIO_FastControlPinValue (Led.PORT, Led.PIN, Reset);
 	
-	else if (Led.Connection == Sink)
-		GPIO_SetPinValue (Led.PORT, Led.PIN, LED_High);
+	else if (Led.Connection == LED_Sink)
+		GPIO_FastControlPinValue (Led.PORT, Led.PIN, Set);
 }

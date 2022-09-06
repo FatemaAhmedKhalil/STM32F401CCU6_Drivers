@@ -26,7 +26,7 @@ u8 GetPressedKey (void)
 	for (ColumnIndex = 0; ColumnIndex < ColumnsNumber; ColumnIndex++)
 	{
 		// Activate Current Column
-		GPIO_ControlPinValue (KPD_PORT, KPD_ColumnArray[ColumnIndex], KPD_Release);
+		GPIO_ControlPinValue (KPD_PORT, KPD_ColumnArray[ColumnIndex], Reset);
 		
 		for (RowIndex = 0; RowIndex < RowsNumber; RowIndex++)
 		{
@@ -34,12 +34,12 @@ u8 GetPressedKey (void)
 			GPIO_GetPinValue (KPD_PORT, KPD_RowArray[RowIndex], &PinState);
 			
 			// Check if the Key is Pressed
-			if (PinState == KPD_Preseed)
+			if (PinState == KPD_CheckPreseed)
 			{
 				PressedKey = KPD[ColumnIndex][RowIndex];
 				
 				// Polling (Busy Waiting) until the key is released
-				while(PinState == KPD_Preseed)
+				while(PinState == KPD_CheckPreseed)
 						GPIO_GetPinValue (KPD_PORT, KPD_RowArray[RowIndex], &PinState);
 						
 					return PressedKey;
@@ -47,7 +47,7 @@ u8 GetPressedKey (void)
 		}
 		
 		// Deactivate Current Column
-		GPIO_ControlPinValue (KPD_PORT, KPD_ColumnArray[ColumnIndex], KPD_Set);
+		GPIO_ControlPinValue (KPD_PORT, KPD_ColumnArray[ColumnIndex], Set);
 	}
 	return PressedKey;
 }
