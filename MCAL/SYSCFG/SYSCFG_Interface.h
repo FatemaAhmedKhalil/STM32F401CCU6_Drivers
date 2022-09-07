@@ -42,6 +42,6 @@
 #define SYSCFG_PORTB	0001
 #define SYSCFG_PORTC	0010
 
-void SYSCFG_SetPortEXTI(u8 LineID, u8 PortID);
+u8 SYSCFG_SetPortEXTI(u8 LineID, u8 PortID);
 
 #endif
