@@ -8,6 +8,10 @@
 
 #ifndef SYSCFG_Interface
 #define SYSCFG_Interface
+
+/** Error States **/
+#define ErrorSYSCFGLineRange	11
+
 /****************************************************************/
 /* Define: Selected Line from 0 : 15 for EXTI					*/
 /*																*/
