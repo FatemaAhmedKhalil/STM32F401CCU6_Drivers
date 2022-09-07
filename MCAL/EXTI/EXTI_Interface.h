@@ -16,7 +16,7 @@
 #define ErrorEXTI_Function	10
 
 /****************************************************************************/
-/* Define: Selected Line from 1 : 16										*/
+/* Define: Selected Line from 0 : 15										*/
 /*	The five other EXTI lines are connected as follows:						*/
 /*		� EXTI line 16 is connected to the PVD output						*/
 /*		� EXTI line 17 is connected to the RTC Alarm event					*/
