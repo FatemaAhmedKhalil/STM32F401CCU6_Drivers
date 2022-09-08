@@ -10,9 +10,6 @@
 #ifndef SysTick_Interface
 #define SysTick_Interface
 
-/** Error States **/
-#define ErrorRange	12
-
 void SysTick_Initialization (void);
 
 void SysTick_SetBusyWait (u32 Ticks);
