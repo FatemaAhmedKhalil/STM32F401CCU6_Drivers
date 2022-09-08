@@ -9,7 +9,7 @@
 
 
 /*************************************************************************************************************************/
-/** Define The Port used in the Hardware  -->  GPIOA or GPIOB or GPIOC													**/
+/** Define The Port used in the Hardware  -->  GPIO_A or GPIO_B or GPIO_C										**/
 /**									** From GPIO Interface **															**/
 /**                                                                                                                     **/
 /**	Define The Pin used in the Hardware   -->  PIN0 or PIN1 or PIN2 or PIN3 or .......								    **/
