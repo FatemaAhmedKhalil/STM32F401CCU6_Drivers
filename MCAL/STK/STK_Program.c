@@ -63,7 +63,7 @@ void STK_SetInterval_Single (u32 Ticks, void (*STKFunction)(void))
 	STK->VAL = 0;
 	
 	// Load Timer with value
-	STK->LOAD = Ticks-1;
+	STK->LOAD = Ticks;
 	
 	// Start the Timer
 	SET_BIT(STK->CTRL, ENABLE);
