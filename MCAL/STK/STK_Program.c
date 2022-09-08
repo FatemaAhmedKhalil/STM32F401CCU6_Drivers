@@ -42,7 +42,7 @@ void STK_SetBusyWait (u32 Ticks)
 	// Reset Timer value
 	STK->VAL = 0 ;
 	// Load Timer with value
-	STK->LOAD = Ticks-1;
+	STK->LOAD = Ticks;
 	// Start the Timer
 	SET_BIT(STK->CTRL, ENABLE);
 	
