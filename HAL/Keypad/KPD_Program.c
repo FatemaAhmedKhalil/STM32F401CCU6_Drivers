@@ -27,7 +27,7 @@ u8 GetPressedKey (void)
 	for (ColumnIndex = 0; ColumnIndex < ColumnsNumber; ColumnIndex++)
 	{
 		// Activate Current Column
-		GPIO_ControlPinValue (KPD_PORT, KPD_ColumnArray[ColumnIndex], Reset);
+		GPIO_FastControlPinValue (KPD_PORT, KPD_ColumnArray[ColumnIndex], Reset);
 		
 		for (RowIndex = 0; RowIndex < RowsNumber; RowIndex++)
 		{
@@ -48,7 +48,7 @@ u8 GetPressedKey (void)
 		}
 		
 		// Deactivate Current Column
-		GPIO_ControlPinValue (KPD_PORT, KPD_ColumnArray[ColumnIndex], Set);
+		GPIO_FastControlPinValue (KPD_PORT, KPD_ColumnArray[ColumnIndex], Set);
 	}
 	return PressedKey;
 }

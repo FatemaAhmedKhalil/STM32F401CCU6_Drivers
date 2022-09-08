@@ -3,6 +3,7 @@
 /************************************* Author: Fatema Ahmed ************************************/
 /***************************************** Layer: HAL ******************************************/
 /*************************************** Component: CLCD ***************************************/
+/***************************************** Version: 1.0 ****************************************/
 /***********************************************************************************************/
 /***********************************************************************************************/
 
@@ -10,24 +11,18 @@
 #include "BitOperations.h"
 
 #include "GPIO_Interface.h"
+#include "SysTick_Interface.h"
+
 #include "CLCD_Interface.h"
 #include "CLCD_Private.h"
 #include "CLCD_Config.h"
 
-void Delay (void)	// Function Delay
-{
-	for(u32 i = 0 ; i< 10000 ; i++)
-	{
-		asm("NOP");
-	}
-}
-
-u8 Counter = 0; // to Count the Number of Characters in the line
+u8 Global_Counter = 0; // to Count the Number of Characters in the line
 
 void CLCD_SendCommand (u8 Command)
 {
-	GPIO_ControlPinValue (ControlPort, CLCD_RS, Reset);	// Set RS to Low for Command
-	GPIO_ControlPinValue (ControlPort, CLCD_RW, Reset); // Set RS to Low for Write
+	GPIO_FastControlPinValue (ControlPort, CLCD_RS, Reset);	// Set RS to Low for Command
+	GPIO_FastControlPinValue (ControlPort, CLCD_RW, Reset); // Set RS to Low for Write
 
 	// Set Command to Data Pins
 	GPIO_SetPinValue( DataPort, CLCD_D0 , GET_BIT(Command,0) );
@@ -40,19 +35,17 @@ void CLCD_SendCommand (u8 Command)
 	GPIO_SetPinValue( DataPort, CLCD_D7 , GET_BIT(Command,7) );
 	
 	// Send Enable Pulse
-	GPIO_ControlPinValue (ControlPort, CLCD_E, Set);
-
-	/****************************************************/
-	Delay();
-	/****************************************************/
-
-	GPIO_ControlPinValue (ControlPort, CLCD_E, Reset);
+	GPIO_FastControlPinValue (ControlPort, CLCD_E, Set);
+	
+	SysTick_SetBusyWait (LCD_CommandDelay);
+	
+	GPIO_FastControlPinValue (ControlPort, CLCD_E, Reset);
 }
 
 void CLCD_SendData (u8 Data)
 {
-	GPIO_ControlPinValue (ControlPort, CLCD_RS, Set); // Set RS to High for Data
-	GPIO_ControlPinValue (ControlPort, CLCD_RW, Reset); // Set RS to Low for Write
+	GPIO_FastControlPinValue (ControlPort, CLCD_RS, Set); // Set RS to High for Data
+	GPIO_FastControlPinValue (ControlPort, CLCD_RW, Reset); // Set RS to Low for Write
 
 	// Set Data to Data Pins
 	GPIO_SetPinValue( DataPort, CLCD_D0 , GET_BIT(Data,0) );
@@ -65,22 +58,20 @@ void CLCD_SendData (u8 Data)
 	GPIO_SetPinValue( DataPort, CLCD_D7 , GET_BIT(Data,7) );
 	
 	// Send Enable Pulse
-	GPIO_ControlPinValue (ControlPort, CLCD_E, Set);
-
-	/****************************************************/
-	Delay();
-	/****************************************************/
-
-	GPIO_ControlPinValue (ControlPort, CLCD_E, Reset);
+	GPIO_FastControlPinValue (ControlPort, CLCD_E, Set);
 	
-	Counter++;
-	if (Counter == 16)  // Go to the Second Line
+	SysTick_SetBusyWait (LCD_CommandDelay);
+
+	GPIO_FastControlPinValue (ControlPort, CLCD_E, Reset);
+	
+	Global_Counter++;
+	if (Global_Counter == 16)  // Go to the Second Line
 		CLCD_SetCursor(1,0);
 
-	if (Counter == 32)  // Go Back to the First Line
+	if (Global_Counter == 32)  // Go Back to the First Line
 	{
 		CLCD_SetCursor(0,0);
-		Counter = 0;
+		Global_Counter = 0;
 	}
 
 }
@@ -166,9 +157,7 @@ void CLCD_WriteSpecialChars (u8* Pattern, u8 OverwriteBlockNumber /*Just 8 Block
 void CLCD_Initialization (void)
 {
 	// Wait for more than 30ms
-	/****************************************************/
-	Delay();
-	/****************************************************/
+	SysTick_SetBusyWait (LCD_InitializationDelay);
 	
 	// Function Set Command: 2 Lines(bit 3), 5*7 Font Size(bit 2)
 	CLCD_SendCommand (0b00111100);
