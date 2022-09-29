@@ -15,12 +15,12 @@
 #include "Switch_Private.h"
 #include "Switch_Interface.h"
 
-u8 PressedButton(SWITCH Switch)
+u8 Switch_u8PressedButton(SWITCH Switch)
 {
-	u8 SwitchState = 0;
+	u8 u8SwitchState = 0;
 	
 	if (Switch.Type == PushButton)
-		GPIO_GetPinValue (Switch.PORT, Switch.PIN, &SwitchState);
+		GPIO_u8GetPinValue (Switch.PORT, Switch.PIN, &u8SwitchState);
 	
-	return SwitchState;
+	return u8SwitchState;
 }

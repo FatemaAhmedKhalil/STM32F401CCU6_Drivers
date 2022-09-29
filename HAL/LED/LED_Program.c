@@ -15,20 +15,20 @@
 #include "LED_Private.h"
 #include "LED_Interface.h"
 
-void TurnLEDON(LED Led)
+void LED_voidTurnON(LED LEDs)
 {
-	if (Led.Connection == LED_Source)
-		GPIO_FastControlPinValue (Led.PORT, Led.PIN, Set);
+	if (LEDs.Connection == LED_Source)
+		GPIO_u8FastControlPinValue (LEDs.PORT, LEDs.PIN, GPIO_HIGH);
 		
-	else if (Led.Connection == LED_Sink)
-		GPIO_FastControlPinValue (Led.PORT, Led.PIN, Reset);
+	else if (LEDs.Connection == LED_Sink)
+		GPIO_u8FastControlPinValue (LEDs.PORT, LEDs.PIN, GPIO_LOW);
 }
 
-void TurnLEDOFF(LED Led)
+void LED_void_TurnOFF(LED LEDs)
 {
-	if (Led.Connection == LED_Source)
-		GPIO_FastControlPinValue (Led.PORT, Led.PIN, Reset);
+	if (LEDs.Connection == LED_Source)
+		GPIO_u8FastControlPinValue (LEDs.PORT, LEDs.PIN, GPIO_LOW);
 	
-	else if (Led.Connection == LED_Sink)
-		GPIO_FastControlPinValue (Led.PORT, Led.PIN, Set);
+	else if (LEDs.Connection == LED_Sink)
+		GPIO_u8FastControlPinValue (LEDs.PORT, LEDs.PIN, GPIO_HIGH);
 }
