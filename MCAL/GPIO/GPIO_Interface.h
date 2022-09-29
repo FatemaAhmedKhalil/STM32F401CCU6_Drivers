@@ -23,9 +23,6 @@
 #define GPIO_HIGH  1
 #define GPIO_LOW   0
 
-#define GPIO_Reset	0
-#define GPIO_Set	1
-
 #define GPIO_PORTA	1
 #define GPIO_PORTB	2
 #define GPIO_PORTC	3

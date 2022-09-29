@@ -59,7 +59,7 @@ u8 GPIO_u8FastControlPinValue (u8 u8Port, u8 u8Pin, u8 u8Status)
 	
 	if ( (u8Port == GPIO_PORTA && u8Pin <= GPIO_PIN15 ) || (u8Port == GPIO_PORTB && u8Pin <= GPIO_PIN15 ) || ( u8Port == GPIO_PORTC && ( u8Pin >= GPIO_PIN13 ||  u8Pin <= GPIO_PIN15 ) ) ) // Check Ranges
 	{
-		if (u8Status == GPIO_Reset)
+		if (u8Status == GPIO_LOW)
 		{
 			switch (u8Port)
 			{
@@ -70,7 +70,7 @@ u8 GPIO_u8FastControlPinValue (u8 u8Port, u8 u8Pin, u8 u8Status)
 			}
 		}
 		
-		else if (u8Status == GPIO_Set)
+		else if (u8Status == GPIO_HIGH)
 		{
 			switch (u8Port)
 			{
