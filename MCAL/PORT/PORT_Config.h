@@ -45,7 +45,7 @@
 #define PORTB_Register8_Mode	00
 #define PORTB_Register9_Mode	00
 #define PORTB_Register10_Mode	00
-#define PORTB_Register11_Mode	00
+#define PORTB_Register11_Mode	00 // Not Exist
 #define PORTB_Register12_Mode	00
 #define PORTB_Register13_Mode	00
 #define PORTB_Register14_Mode	00
@@ -89,7 +89,7 @@
 #define PORTB_Pin8_OutType	0
 #define PORTB_Pin9_OutType	0
 #define PORTB_Pin10_OutType	0
-#define PORTB_Pin11_OutType	0
+#define PORTB_Pin11_OutType	0 // Not Exist
 #define PORTB_Pin12_OutType	0
 #define PORTB_Pin13_OutType	0
 #define PORTB_Pin14_OutType	0
@@ -135,7 +135,7 @@
 #define PORTB_Register8_Speed	00
 #define PORTB_Register9_Speed	00
 #define PORTB_Register10_Speed	00
-#define PORTB_Register11_Speed	00
+#define PORTB_Register11_Speed	00 // Not Exist
 #define PORTB_Register12_Speed	00
 #define PORTB_Register13_Speed	00
 #define PORTB_Register14_Speed	00
@@ -181,7 +181,7 @@
 #define PORTB_Register8_PP	00					   
 #define PORTB_Register9_PP	00					   
 #define PORTB_Register10_PP	00					   
-#define PORTB_Register11_PP	00					   
+#define PORTB_Register11_PP	00 // Not Exist					   
 #define PORTB_Register12_PP	00					   
 #define PORTB_Register13_PP	00					   
 #define PORTB_Register14_PP	00					   
@@ -229,7 +229,7 @@
 #define PORTB_Pin8_Lock		0
 #define PORTB_Pin9_Lock		0
 #define PORTB_Pin10_Lock	0
-#define PORTB_Pin11_Lock	0
+#define PORTB_Pin11_Lock	0 // Not Exist
 #define PORTB_Pin12_Lock	0
 #define PORTB_Pin13_Lock	0
 #define PORTB_Pin14_Lock	0
@@ -305,7 +305,7 @@
 #define PORTB_Pin8_AFH		AF0
 #define PORTB_Pin9_AFH		AF0
 #define PORTB_Pin10_AFH		AF0
-#define PORTB_Pin11_AFH		AF0
+#define PORTB_Pin11_AFH		AF0 // Not Exist
 #define PORTB_Pin12_AFH		AF0
 #define PORTB_Pin13_AFH		AF0
 #define PORTB_Pin14_AFH		AF0

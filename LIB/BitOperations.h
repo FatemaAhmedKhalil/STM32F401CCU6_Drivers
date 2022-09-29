@@ -14,4 +14,5 @@
 #define CLR_BIT(x,BIT)    ( x&=(~(1<<BIT)) )
 #define TOGGLE_BIT(x,BIT) ( x^=(1<<BIT) )
 #define GET_BIT(x,BIT)    ( (x>>BIT)&1 )
+#define TOG_BIT(x, BIT)	  ((x) ^= 1<<(BIT))
 #endif

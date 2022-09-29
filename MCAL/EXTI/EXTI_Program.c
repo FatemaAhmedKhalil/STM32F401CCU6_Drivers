@@ -24,86 +24,86 @@ void (*EXTI_EXTI4Function)(void) = NULL;
 void (*EXTI_EXTI9_5Function)(void) = NULL;
 void (*EXTI_EXTI15_10Function)(void) = NULL;
 
-u8 EXTI_EnableTriggerLine (u8 LineID, u8 Trigger)
+u8 EXTI_u8EnableTriggerLine (u8 u8LineID, u8 u8Trigger)
 {
-	u8 ErrorState = 0;
-	if ( LineID < 16)
+	u8 u8ErrorState = 0;
+	if ( u8LineID < 16)
 	{
-		SET_BIT(EXTI->IMR , LineID);
+		SET_BIT(EXTI->IMR , u8LineID);
 		
-		switch (Trigger)
+		switch (u8Trigger)
 		{
-			case EXTI_RisingEdge: SET_BIT(EXTI->RTSR, LineID); CLR_BIT(EXTI->FTSR, LineID); break;
-			case EXTI_FallingEdge: CLR_BIT(EXTI->RTSR, LineID); SET_BIT(EXTI->FTSR, LineID); break;
-			case EXTI_OnChange: SET_BIT(EXTI->RTSR, LineID); SET_BIT(EXTI->FTSR, LineID); break;
-			default: ErrorState = ErrorTriggerSelection;
+			case EXTI_RisingEdge: SET_BIT(EXTI->RTSR, u8LineID); CLR_BIT(EXTI->FTSR, u8LineID); break;
+			case EXTI_FallingEdge: CLR_BIT(EXTI->RTSR, u8LineID); SET_BIT(EXTI->FTSR, u8LineID); break;
+			case EXTI_OnChange: SET_BIT(EXTI->RTSR, u8LineID); SET_BIT(EXTI->FTSR, u8LineID); break;
+			default: u8ErrorState = EXTI_ErrorTriggerSelection;
 		}
 	}
 	else 
-		ErrorState = ErrorLineRange;
+		u8ErrorState = EXTI_ErrorLineRange;
 	
-	return ErrorState;
+	return u8ErrorState;
 }
 
-u8 EXTI_DisableLine (u8 LineID)
+u8 EXTI_u8DisableLine (u8 u8LineID)
 {
-	u8 ErrorState = 0;
-	if ( LineID < 16)
-		CLR_BIT(EXTI->IMR , LineID);
+	u8 u8ErrorState = 0;
+	if ( u8LineID < 16)
+		CLR_BIT(EXTI->IMR , u8LineID);
 	
 	else
-		ErrorState = ErrorLineRange;
+		u8ErrorState = EXTI_ErrorLineRange;
 	
-	return ErrorState;
+	return u8ErrorState;
 }
 
-u8 EXTI_SoftWareTrigger (u8 LineID)
+u8 EXTI_u8SoftWareTrigger (u8 u8LineID)
 {
-	u8 ErrorState = 0;
-	if ( LineID < 16)
-		SET_BIT(EXTI->SWIER , LineID);
+	u8 u8ErrorState = 0;
+	if ( u8LineID < 16)
+		SET_BIT(EXTI->SWIER , u8LineID);
 	
 	else
-		ErrorState = ErrorLineRange;
+		u8ErrorState = EXTI_ErrorLineRange;
 	
-	return ErrorState;
+	return u8ErrorState;
 }
 
 /** Call Back **/
-u8 EXTI_CallBack (u8 EXTIn, void (*EXTInFunction)(void))
+u8 EXTI_u8CallBack (u8 u8EXTIn, void (*pvvEXTInFunction)(void))
 {
-	u8 ErrorSate = 0;
+	u8 u8ErrorState = 0;
 	
-	if (EXTInFunction != NULL)
+	if (pvvEXTInFunction != NULL)
 	{
-		if (EXTIn == EXTILine0)  // Call Back for EXTI0
-			EXTI_EXTI0Function = EXTInFunction;
+		if (u8EXTIn == EXTI_Line0)  // Call Back for EXTI0
+			EXTI_EXTI0Function = pvvEXTInFunction;
 			
-		else if (EXTIn == EXTILine1)  // Call Back for EXTI1
-			EXTI_EXTI1Function = EXTInFunction;
+		else if (u8EXTIn == EXTI_Line1)  // Call Back for EXTI1
+			EXTI_EXTI1Function = pvvEXTInFunction;
 		
-		else if (EXTIn == EXTILine2)  // Call Back for EXTI2
-			EXTI_EXTI2Function = EXTInFunction;
+		else if (u8EXTIn == EXTI_Line2)  // Call Back for EXTI2
+			EXTI_EXTI2Function = pvvEXTInFunction;
 			
-		else if (EXTIn == EXTILine3)  // Call Back for EXTI3
-			EXTI_EXTI3Function = EXTInFunction;
+		else if (u8EXTIn == EXTI_Line3)  // Call Back for EXTI3
+			EXTI_EXTI3Function = pvvEXTInFunction;
 		
-		else if (EXTIn == EXTILine4)  // Call Back for EXTI4
-			EXTI_EXTI4Function = EXTInFunction;
+		else if (u8EXTIn == EXTI_Line4)  // Call Back for EXTI4
+			EXTI_EXTI4Function = pvvEXTInFunction;
 		
-		else if (EXTIn <= EXTILine9)  // Call Back for EXTI5 : EXTI9
-			EXTI_EXTI9_5Function = EXTInFunction;
+		else if (u8EXTIn <= EXTI_Line9)  // Call Back for EXTI5 : EXTI9
+			EXTI_EXTI9_5Function = pvvEXTInFunction;
 		
-		else if (EXTIn <= EXTILine15)  // Call Back for EXTI10 : EXTI15
-			EXTI_EXTI15_10Function = EXTInFunction;
+		else if (u8EXTIn <= EXTI_Line15)  // Call Back for EXTI10 : EXTI15
+			EXTI_EXTI15_10Function = pvvEXTInFunction;
 		
 		else
-			ErrorSate = ErrorEXTI_ID;
+			u8ErrorState = EXTI_ErrorEXTI_ID;
 	}
 	else
-		ErrorSate = ErrorEXTI_Function;
+		u8ErrorState = EXTI_ErrorEXTI_Function;
 	
-	return ErrorSate;
+	return u8ErrorState;
 }
 
 /** ************************************************************************************************ **/
@@ -117,7 +117,7 @@ void EXTI0_IRQHandler(void)
 	{
 		/* Do Nothing */
 	}
-	SET_BIT(EXTI->PR, EXTILine0); // Clear Flag
+	SET_BIT(EXTI->PR, EXTI_Line0); // Clear Flag
 }
 
 /** ISR of EXTI1 **/
@@ -130,7 +130,7 @@ void EXTI1_IRQHandler(void)
 	{
 		/* Do Nothing */
 	}
-	SET_BIT(EXTI->PR, EXTILine1); // Clear Flag
+	SET_BIT(EXTI->PR, EXTI_Line1); // Clear Flag
 }
 
 /** ISR of EXTI2 **/
@@ -143,7 +143,7 @@ void EXTI2_IRQHandler(void)
 	{
 		/* Do Nothing */
 	}
-	SET_BIT(EXTI->PR, EXTILine2); // Clear Flag
+	SET_BIT(EXTI->PR, EXTI_Line2); // Clear Flag
 }
 
 /** ISR of EXTI3 **/
@@ -156,7 +156,7 @@ void EXTI3_IRQHandler(void)
 	{
 		/* Do Nothing */
 	}
-	SET_BIT(EXTI->PR, EXTILine3); // Clear Flag
+	SET_BIT(EXTI->PR, EXTI_Line3); // Clear Flag
 }
 
 /** ISR of EXTI4 **/
@@ -169,7 +169,7 @@ void EXTI4_IRQHandler(void)
 	{
 		/* Do Nothing */
 	}
-	SET_BIT(EXTI->PR, EXTILine4); // Clear Flag
+	SET_BIT(EXTI->PR, EXTI_Line4); // Clear Flag
 }
 
 /** ISR of EXTI5:9 **/
@@ -182,11 +182,11 @@ void EXTI9_5_IRQHandler(void)
 	{
 		/* Do Nothing */
 	}
-	SET_BIT(EXTI->PR, EXTILine5); // Clear Flag
-	SET_BIT(EXTI->PR, EXTILine6);
-	SET_BIT(EXTI->PR, EXTILine7);
-	SET_BIT(EXTI->PR, EXTILine8);
-	SET_BIT(EXTI->PR, EXTILine9);
+	SET_BIT(EXTI->PR, EXTI_Line5); // Clear Flag
+	SET_BIT(EXTI->PR, EXTI_Line6);
+	SET_BIT(EXTI->PR, EXTI_Line7);
+	SET_BIT(EXTI->PR, EXTI_Line8);
+	SET_BIT(EXTI->PR, EXTI_Line9);
 }
 
 /** ISR of EXTI10:15 **/
@@ -199,10 +199,10 @@ void EXTI15_10_IRQHandler(void)
 	{
 		/* Do Nothing */
 	}
-	SET_BIT(EXTI->PR, EXTILine10); // Clear Flag
-	SET_BIT(EXTI->PR, EXTILine11);
-	SET_BIT(EXTI->PR, EXTILine12);
-	SET_BIT(EXTI->PR, EXTILine13);
-	SET_BIT(EXTI->PR, EXTILine14);
-	SET_BIT(EXTI->PR, EXTILine15);
+	SET_BIT(EXTI->PR, EXTI_Line10); // Clear Flag
+	SET_BIT(EXTI->PR, EXTI_Line11);
+	SET_BIT(EXTI->PR, EXTI_Line12);
+	SET_BIT(EXTI->PR, EXTI_Line13);
+	SET_BIT(EXTI->PR, EXTI_Line14);
+	SET_BIT(EXTI->PR, EXTI_Line15);
 }

@@ -15,84 +15,84 @@
 #include "NVIC_Register.h"
 #include "NVIC_Interface.h"
 
-static u32 GLOBAL_PriorityOption;
+static u32 u32GLOBAL_PriorityOption;
 
-void NVIC_EnableInterrupt (u8 InterruptID)
+void NVIC_voidEnableInterrupt (u8 u8InterruptID)
 {
-	NVIC->ISER[InterruptID/32] = 1 << InterruptID%32;
+	NVIC->ISER[u8InterruptID/32] = 1 << u8InterruptID%32;
 }
-void NVIC_DisableInterrupt (u8 InterruptID)
+void NVIC_voidDisableInterrupt (u8 u8InterruptID)
 {
-	NVIC->ICER[InterruptID/32] = 1 << InterruptID%32;
-}
-
-void NVIC_SetPendingFlag (u8 InterruptID)
-{
-	NVIC->ISPR[InterruptID/32] = 1 << InterruptID%32;
+	NVIC->ICER[u8InterruptID/32] = 1 << u8InterruptID%32;
 }
 
-void NVIC_ClearPendingFlag (u8 InterruptID)
+void NVIC_voidSetPendingFlag (u8 u8InterruptID)
 {
-	NVIC->ICPR[InterruptID/32] = 1 << InterruptID%32;
+	NVIC->ISPR[u8InterruptID/32] = 1 << u8InterruptID%32;
 }
 
-u8 NVIC_GetActiveFlag (u8 InterruptID)
+void NVIC_voidClearPendingFlag (u8 u8InterruptID)
 {
-	u8 Result = 0;
-	Result = GET_BIT( NVIC->IABR[InterruptID/32], InterruptID%32 );
-	return Result;
+	NVIC->ICPR[u8InterruptID/32] = 1 << u8InterruptID%32;
 }
 
-u8 NVIC_SetPriority(u8 PRIGROUP, s8 InterruptVectorPosition, u8 GroupPriority, u8 SubPriority)
+u8 NVIC_u8GetActiveFlag (u8 u8InterruptID)
 {
-	u8 ErrorState = 0;
+	u8 u8Result = 0;
+	u8Result = GET_BIT( NVIC->IABR[u8InterruptID/32], u8InterruptID%32 );
+	return u8Result;
+}
+
+u8 NVIC_u8SetPriority(u8 u8PRIGROUP, s8 s8InterruptVectorPosition, u8 u8GroupPriority, u8 u8SubPriority)
+{
+	u8 u8ErrorState = 0;
 	
 	/** Check Ranges **/
-	if ( PRIGROUP == 0b011 && (GroupPriority > 15 || SubPriority > 0) )
-		ErrorState = ErrorGroupsORSubsRange;
+	if ( u8PRIGROUP == 0b011 && (u8GroupPriority > 15 || u8SubPriority > 0) )
+		u8ErrorState = NVIC_ErrorGroupsORSubsRange;
 		
-	else if ( PRIGROUP == 0b100 && (GroupPriority > 7 || SubPriority > 1) )
-		ErrorState = ErrorGroupsORSubsRange;
+	else if ( u8PRIGROUP == 0b100 && (u8GroupPriority > 7 || u8SubPriority > 1) )
+		u8ErrorState = NVIC_ErrorGroupsORSubsRange;
 		
-	else if ( PRIGROUP == 0b101 && (GroupPriority > 3 || SubPriority > 3) )
-		ErrorState = ErrorGroupsORSubsRange;
+	else if ( u8PRIGROUP == 0b101 && (u8GroupPriority > 3 || u8SubPriority > 3) )
+		u8ErrorState = NVIC_ErrorGroupsORSubsRange;
 		
-	else if ( PRIGROUP == 0b110 && (GroupPriority > 1 || SubPriority > 7) )
-		ErrorState = ErrorGroupsORSubsRange;
+	else if ( u8PRIGROUP == 0b110 && (u8GroupPriority > 1 || u8SubPriority > 7) )
+		u8ErrorState = NVIC_ErrorGroupsORSubsRange;
 		
-	else if ( PRIGROUP == 0b111 && (GroupPriority > 0 || SubPriority > 15) )
-		ErrorState = ErrorGroupsORSubsRange;
+	else if ( u8PRIGROUP == 0b111 && (u8GroupPriority > 0 || u8SubPriority > 15) )
+		u8ErrorState = NVIC_ErrorGroupsORSubsRange;
 	
 	else 
 	{
-		GLOBAL_PriorityOption = 0x05FA0000 | ( PRIGROUP << 8);
-		SCB->AIRCR = GLOBAL_PriorityOption;
+		u32GLOBAL_PriorityOption = 0x05FA0000 | ( u8PRIGROUP << 8);
+		SCB->AIRCR = u32GLOBAL_PriorityOption;
 		
-		u8 Priority = SubPriority | ( GroupPriority << ((GLOBAL_PriorityOption - 0x05FA0300) / 256) );
+		u8 Priority = u8SubPriority | ( u8GroupPriority << ((u32GLOBAL_PriorityOption - 0x05FA0300) / 256) );
 		
-		if (InterruptVectorPosition < 0)	// Core Peripheral
+		if (s8InterruptVectorPosition < 0)	// Core Peripheral
 		{
-			if (InterruptVectorPosition == NVIC_MemoryManagementFault || InterruptVectorPosition == NVIC_BusFault || InterruptVectorPosition == NVIC_UsageFault)
+			if (s8InterruptVectorPosition == NVIC_MemoryManagementFault || s8InterruptVectorPosition == NVIC_BusFault || s8InterruptVectorPosition == NVIC_UsageFault)
 			{
-				InterruptVectorPosition += 3;
-				SCB->SHPR1 = (Priority) << ((8 * InterruptVectorPosition) + 4);
+				s8InterruptVectorPosition += 3;
+				SCB->SHPR1 = (Priority) << ((8 * s8InterruptVectorPosition) + 4);
 			}
-			else if (InterruptVectorPosition == NVIC_SVCall)
+			else if (s8InterruptVectorPosition == NVIC_SVCall)
 			{
-				InterruptVectorPosition += 7;
-				SCB->SHPR2 = (Priority) << ((8 * InterruptVectorPosition) + 4);
+				s8InterruptVectorPosition += 7;
+				SCB->SHPR2 = (Priority) << ((8 * s8InterruptVectorPosition) + 4);
 			}
-			else if (InterruptVectorPosition == NVIC_PendSV || InterruptVectorPosition == NVIC_SysTick)
+			else if (s8InterruptVectorPosition == NVIC_PendSV || s8InterruptVectorPosition == NVIC_SysTick)
 			{
-				InterruptVectorPosition += 8;
-				SCB->SHPR3 = (Priority) << ((8 * InterruptVectorPosition) + 4);
+				s8InterruptVectorPosition += 8;
+				SCB->SHPR3 = (Priority) << ((8 * s8InterruptVectorPosition) + 4);
 			}
 		}
 	
-		else if (InterruptVectorPosition >= 0)	// External Peripheral
+		else if (s8InterruptVectorPosition >= 0)	// External Peripheral
 		{
-			NVIC->IPR[InterruptVectorPosition] = Priority << 4;
+			NVIC->IPR[s8InterruptVectorPosition] = Priority << 4;
 		}
 	}
-	return ErrorState;
+	return u8ErrorState;
 }

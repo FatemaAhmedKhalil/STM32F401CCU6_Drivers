@@ -11,7 +11,7 @@
 #define SYSCFG_Interface
 
 /** Error States **/
-#define ErrorSYSCFGLineRange	11
+#define SYSCFG_ErrorSYSCFGLineRange	11
 
 /****************************************************************/
 /* Define: Selected Line from 0 : 15 for EXTI					*/
@@ -43,6 +43,6 @@
 #define SYSCFG_PORTB	0001
 #define SYSCFG_PORTC	0010
 
-u8 SYSCFG_SetPortEXTI(u8 LineID, u8 PortID);
+u8 SYSCFG_u8SetPortEXTI(u8 u8LineID, u8 u8PortID);
 
 #endif

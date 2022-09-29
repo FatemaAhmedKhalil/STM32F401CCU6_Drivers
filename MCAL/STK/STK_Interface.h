@@ -10,14 +10,14 @@
 #ifndef STK_Interface
 #define STK_Interface
 
-void STK_Initialization (void);
+void STK_voidInitialization (void);
 
-void STK_SetBusyWait (u32 Ticks);
+void STK_voidSetBusyWait (u32 u32Ticks);
 
-void STK_SetInterval_Single (u32 Ticks, void (*STKFunction)(void));
-void STK_SetInterval_Periodic (u32 Ticks, void (*STKFunction)(void));
+void STK_voidSetInterval_Single (u32 u32Ticks, void (*pvvSTKFunction)(void));
+void STK_voidSetInterval_Periodic (u32 u32Ticks, void (*pvvSTKFunction)(void));
 
-u32 STK_GetElapsedTime (void);
-u32 STK_GetRemainingTime (void);
+u32 STK_voidGetElapsedTime (void);
+u32 STK_voidGetRemainingTime (void);
 
 #endif

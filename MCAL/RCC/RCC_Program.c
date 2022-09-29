@@ -16,9 +16,9 @@
 #include "RCC_Interface.h"
 
 
-u8 RCC_SystemClkInitialization (void)
+u8 RCC_u8SystemClkInitialization (void)
 {
-	u8 ErrorState = 0;
+	u8 u8ErrorState = 0;
 	/** Initialize CSS **/
 	#if CSSBit == 1
 	SET_BIT(RCC->CR, CSSON);
@@ -263,8 +263,8 @@ u8 RCC_SystemClkInitialization (void)
 
 	if (Fpll > 84000000)	// Check Generated System Clock Range
 	{
-		ErrorState = ErrorConfigPLLRCC;
-		return ErrorState;
+		u8ErrorState = RCC_ErrorConfigPLLRCC;
+		return u8ErrorState;
 	}
 
 	/** Initialize MCO1PRE **/
@@ -383,48 +383,48 @@ u8 RCC_SystemClkInitialization (void)
 	#error "Wrong SW Configuration"
 	#endif
 
-	return ErrorState;
+	return u8ErrorState;
 }
 
-u8 RCC_Enable (u8 Bus, u8 Perphiral)
+u8 u8RCC_Enable (u8 u8Bus, u8 u8Perphiral)
 {
-	u8 ErrorState = 0;
+	u8 u8ErrorState = 0;
 	
-	if(Perphiral < 32) // Check Range
+	if(u8Perphiral < 32) // Check Range
 	{
-		switch (Bus)
+		switch (u8Bus)
 		{
-			case AHB1: SET_BIT(RCC->AHB1ENR, Perphiral); break;
-			case AHB2: SET_BIT(RCC->AHB2ENR, Perphiral); break;
-			case APB1: SET_BIT(RCC->APB1ENR, Perphiral); break;
-			case APB2: SET_BIT(RCC->APB2ENR, Perphiral); break;
-			default: ErrorState = ErrorBusRangeRCC; break;
+			case RCC_AHB1: SET_BIT(RCC->AHB1ENR, u8Perphiral); break;
+			case RCC_AHB2: SET_BIT(RCC->AHB2ENR, u8Perphiral); break;
+			case RCC_APB1: SET_BIT(RCC->APB1ENR, u8Perphiral); break;
+			case RCC_APB2: SET_BIT(RCC->APB2ENR, u8Perphiral); break;
+			default: u8ErrorState = RCC_ErrorBusRangeRCC; break;
 		}
 	}
 	
 	else
-		ErrorState = ErrorPerphiralRangeRCC; // Out of Range
+		u8ErrorState = RCC_ErrorPerphiralRangeRCC; // Out of Range
 		
-	return ErrorState;
+	return u8ErrorState;
 }
-u8 RCC_Disable(u8 Bus, u8 Perphiral)
+u8 u8RCC_Disable (u8 u8Bus, u8 u8Perphiral)
 {
-	u8 ErrorState = 0;
+	u8 u8ErrorState = 0;
 	
-	if(Perphiral < 32) // Check Range
+	if(u8Perphiral < 32) // Check Range
 	{
-		switch (Bus)
+		switch (u8Bus)
 		{
-			case AHB1: CLR_BIT(RCC->AHB1ENR, Perphiral); break;
-			case AHB2: CLR_BIT(RCC->AHB2ENR, Perphiral); break;
-			case APB1: CLR_BIT(RCC->APB1ENR, Perphiral); break;
-			case APB2: CLR_BIT(RCC->APB2ENR, Perphiral); break;
-			default: ErrorState = ErrorBusRangeRCC; break;
+			case RCC_AHB1: CLR_BIT(RCC->AHB1ENR, u8Perphiral); break;
+			case RCC_AHB2: CLR_BIT(RCC->AHB2ENR, u8Perphiral); break;
+			case RCC_APB1: CLR_BIT(RCC->APB1ENR, u8Perphiral); break;
+			case RCC_APB2: CLR_BIT(RCC->APB2ENR, u8Perphiral); break;
+			default: u8ErrorState = RCC_ErrorBusRangeRCC; break;
 		}
 	}
 	
 	else 
-		ErrorState = ErrorPerphiralRangeRCC; // Out of Range
+		u8ErrorState = RCC_ErrorPerphiralRangeRCC; // Out of Range
 	
-	return ErrorState;
+	return u8ErrorState;
 }

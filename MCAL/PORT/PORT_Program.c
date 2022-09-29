@@ -15,7 +15,7 @@
 #include "PORT_Register.h"
 #include "PORT_Interface.h"
 
-void PORT_Initialliztion (void)
+void PORT_voidInitializtion (void)
 {
 	GPIOA->MODER = PORTA_Mode;
 	GPIOB->MODER = PORTB_Mode;

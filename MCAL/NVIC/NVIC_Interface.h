@@ -11,7 +11,7 @@
 #define NVIC_Interface
 
 /** Error States **/
-#define ErrorGroupsORSubsRange	6
+#define NVIC_ErrorGroupsORSubsRange	6
 
 /******************************************/
 /* Define: Interrupt ID from Vector Table */
@@ -79,13 +79,13 @@
 #define NVIC_FPU			81
 #define NVIC_SPI4			84
 
-void NVIC_EnableInterrupt (u8 InterruptID);
-void NVIC_DisableInterrupt (u8 InterruptID);
+void NVIC_voidEnableInterrupt (u8 u8InterruptID);
+void NVIC_voidDisableInterrupt (u8 u8InterruptID);
+		  
+void NVIC_voidSetPendingFlag (u8 u8InterruptID);
+void NVIC_voidClearPendingFlag (u8 u8InterruptID);
 
-void NVIC_SetPendingFlag (u8 InterruptID);
-void NVIC_ClearPendingFlag (u8 InterruptID);
-
-u8 NVIC_GetActiveFlag (u8 InterruptID);
+u8 NVIC_u8GetActiveFlag (u8 u8InterruptID);
 
 /****************************************************************************/
 /* Define: Priority option													*/
@@ -101,46 +101,46 @@ u8 NVIC_GetActiveFlag (u8 InterruptID);
 /*																			*/
 /* NOTE : Select Groups and Subs priority which suitable for PRIGROUP		*/
 /****************************************************************************/
-#define Groups16_Subs0	0b011	// 0b0xx (4 Group Bits + , 0 Sub Bits -) ++++
-#define Groups8_Subs2	0b100	// (3 Group Bits + , 1 Sub Bits -) +++-
-#define Groups4_Subs4	0b101	// (2 Group Bits + , 2 Sub Bits -) ++--
-#define Groups2_Subs8	0b110	// (1 Group Bits + , 3 Sub Bits -) +---
-#define	Groups0_Subs16	0b111	// (0 Group Bits + , 4 Sub Bits -) ----
+#define NVIC_Groups16_Subs0	0b011	// 0b0xx (4 Group Bits + , 0 Sub Bits -) ++++
+#define NVIC_Groups8_Subs2	0b100	// (3 Group Bits + , 1 Sub Bits -) +++-
+#define NVIC_Groups4_Subs4	0b101	// (2 Group Bits + , 2 Sub Bits -) ++--
+#define NVIC_Groups2_Subs8	0b110	// (1 Group Bits + , 3 Sub Bits -) +---
+#define	NVIC_Groups0_Subs16	0b111	// (0 Group Bits + , 4 Sub Bits -) ----
 
-#define GroupPriority0		0
-#define GroupPriority1		1
-#define GroupPriority2		2
-#define GroupPriority3		3
-#define GroupPriority4		4
-#define GroupPriority5		5
-#define GroupPriority6		6
-#define GroupPriority7		7
-#define GroupPriority8		8
-#define GroupPriority9		9
-#define GroupPriority10		10
-#define GroupPriority11		11
-#define GroupPriority12		12
-#define GroupPriority13		13
-#define GroupPriority14		14
-#define GroupPriority15		15
+#define NVIC_GroupPriority0		0
+#define NVIC_GroupPriority1		1
+#define NVIC_GroupPriority2		2
+#define NVIC_GroupPriority3		3
+#define NVIC_GroupPriority4		4
+#define NVIC_GroupPriority5		5
+#define NVIC_GroupPriority6		6
+#define NVIC_GroupPriority7		7
+#define NVIC_GroupPriority8		8
+#define NVIC_GroupPriority9		9
+#define NVIC_GroupPriority10		10
+#define NVIC_GroupPriority11		11
+#define NVIC_GroupPriority12		12
+#define NVIC_GroupPriority13		13
+#define NVIC_GroupPriority14		14
+#define NVIC_GroupPriority15		15
 
-#define SubPriority0		0
-#define SubPriority1		1
-#define SubPriority2		2
-#define SubPriority3		3
-#define SubPriority4		4
-#define SubPriority5		5
-#define SubPriority6		6
-#define SubPriority7		7
-#define SubPriority8		8
-#define SubPriority9		9
-#define SubPriority10		10
-#define SubPriority11		11
-#define SubPriority12		12
-#define SubPriority13		13
-#define SubPriority14		14
-#define SubPriority15		15
+#define NVIC_SubPriority0		0
+#define NVIC_SubPriority1		1
+#define NVIC_SubPriority2		2
+#define NVIC_SubPriority3		3
+#define NVIC_SubPriority4		4
+#define NVIC_SubPriority5		5
+#define NVIC_SubPriority6		6
+#define NVIC_SubPriority7		7
+#define NVIC_SubPriority8		8
+#define NVIC_SubPriority9		9
+#define NVIC_SubPriority10		10
+#define NVIC_SubPriority11		11
+#define NVIC_SubPriority12		12
+#define NVIC_SubPriority13		13
+#define NVIC_SubPriority14		14
+#define NVIC_SubPriority15		15
 
-u8 NVIC_SetPriority(u8 PRIGROUP, s8 InterruptVectorPosition, u8 GroupPriority, u8 SubPriority);
+u8 NVIC_u8SetPriority(u8 u8PRIGROUP, s8 s8InterruptVectorPosition, u8 u8GroupPriority, u8 u8SubPriority);
 
 #endif

@@ -11,12 +11,12 @@
 #define RCC_Interface
 
 /** Error States **/
-#define ErrorPerphiralRangeRCC	1
-#define ErrorBusRangeRCC		2
-#define ErrorConfigPLLRCC		3
+#define RCC_ErrorPerphiralRangeRCC	1
+#define RCC_ErrorBusRangeRCC		2
+#define RCC_ErrorConfigPLLRCC		3
 
 
-u8 RCC_SystemClkInitialization (void);
+u8 RCC_u8SystemClkInitialization (void);
 
 /****************************************************/
 /* Define											*/
@@ -26,10 +26,10 @@ u8 RCC_SystemClkInitialization (void);
 /* 				- APB1								*/
 /* 				- APB2								*/
 /****************************************************/
-#define	AHB1	1
-#define	AHB2	2
-#define	APB1	3
-#define	APB2	4
+#define	RCC_AHB1	1
+#define	RCC_AHB2	2
+#define	RCC_APB1	3
+#define	RCC_APB2	4
 
 /************************************************************************************/
 /* Define 																			*/
@@ -100,7 +100,7 @@ u8 RCC_SystemClkInitialization (void);
 #define RCC_TIM10	17
 #define RCC_TIM11	18
 
-u8 RCC_Enable (u8 Bus, u8 Perphiral);
-u8 RCC_Disable (u8 Bus, u8 Perphiral);
+u8 u8RCC_Enable (u8 u8Bus, u8 u8Perphiral);
+u8 u8RCC_Disable (u8 u8Bus, u8 u8Perphiral);
 
 #endif

@@ -15,17 +15,17 @@
 #include "SYSCFG_Register.h"
 #include "SYSCFG_Interface.h"
 
-u8 SYSCFG_SetPortEXTI(u8 LineID, u8 PortID)
+u8 SYSCFG_u8SetPortEXTI(u8 u8LineID, u8 u8PortID)
 {
-	u8 ErrorState = 0;
+	u8 u8ErrorState = 0;
 	
-	if (LineID < 16)
+	if (u8LineID < 16)
 	{
-		SYSCFG->EXTICR[LineID/4] &= ~((0b1111) << (LineID%4)*4);
-		SYSCFG->EXTICR[LineID/4] |= ((PortID) << (LineID%4)*4);
+		SYSCFG->EXTICR[u8LineID/4] &= ~((0b1111) << (u8LineID%4)*4);
+		SYSCFG->EXTICR[u8LineID/4] |= ((u8PortID) << (u8LineID%4)*4);
 	}
 	else
-		ErrorState = ErrorSYSCFGLineRange;
+		u8ErrorState = SYSCFG_ErrorSYSCFGLineRange;
 	
-	return ErrorState;
+	return u8ErrorState;
 }

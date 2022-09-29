@@ -18,9 +18,9 @@
 // Global Pointer to Function to Hold STK ISR Address
 void (*STK_CallBackFunction)(void) = NULL;
 
-static u8 Global_SingleFlag; // Single Interval Flag
+static u8 u8Global_SingleFlag; // Single Interval Flag
 
-void STK_Initialization (void)
+void STK_voidInitialization (void)
 {
 	// Initialize Clock Source
 	#if STK_ClkSource == 1
@@ -37,12 +37,12 @@ void STK_Initialization (void)
 	#endif
 }
 
-void STK_SetBusyWait (u32 Ticks)
+void STK_voidSetBusyWait (u32 u32Ticks)
 {
 	// Reset Timer value
 	STK->VAL = 0 ;
 	// Load Timer with value
-	STK->LOAD = Ticks;
+	STK->LOAD = u32Ticks;
 	// Start the Timer
 	SET_BIT(STK->CTRL, ENABLE);
 	
@@ -53,44 +53,44 @@ void STK_SetBusyWait (u32 Ticks)
 	CLR_BIT(STK->CTRL, ENABLE);
 }
 
-void STK_SetInterval_Single (u32 Ticks, void (*STKFunction)(void))
+void STK_voidSetInterval_Single (u32 u32Ticks, void (*pvvSTKFunction)(void))
 {
 	// Callback function
-	STK_CallBackFunction = STKFunction;
-	Global_SingleFlag = 1; // Single Flag is Set
+	STK_CallBackFunction = pvvSTKFunction;
+	u8Global_SingleFlag = 1; // Single Flag is Set
 	
 	// Reset Timer value
 	STK->VAL = 0;
 	
 	// Load Timer with value
-	STK->LOAD = Ticks;
+	STK->LOAD = u32Ticks;
 	
 	// Start the Timer
 	SET_BIT(STK->CTRL, ENABLE);
 }
 
-void STK_SetInterval_Periodic (u32 Ticks, void (*STKFunction)(void))
+void STK_voidSetInterval_Periodic (u32 u32Ticks, void (*pvvSTKFunction)(void))
 {
 	// Callback function
-	STK_CallBackFunction = STKFunction;
-	Global_SingleFlag = 0; // Single Flag is Cleared
+	STK_CallBackFunction = pvvSTKFunction;
+	u8Global_SingleFlag = 0; // Single Flag is Cleared
 	
 	// Reset Timer value
 	STK->VAL = 0;
 	
 	// Load Timer with value
-	STK->LOAD = Ticks-1;
+	STK->LOAD = u32Ticks-1;
 	
 	// Start the Timer
 	SET_BIT(STK->CTRL, ENABLE);
 }
 
-u32  STK_GetElapsedTime (void)
+u32 STK_voidGetElapsedTime (void)
 {
 	return ( (STK->LOAD) - (STK->VAL) );
 }
 
-u32  STK_GetRemainingTime (void)
+u32 STK_voidGetRemainingTime (void)
 {
 	return (STK->VAL);
 }
@@ -105,9 +105,9 @@ void SysTick_Handler(void)
 		/* Do Nothing */
 	}
 		
-	if(Global_SingleFlag) // Check if Single Interval
+	if(u8Global_SingleFlag) // Check if Single Interval
 	{
-		Global_SingleFlag = 0;
+		u8Global_SingleFlag = 0;
 		// Stop the Timer
 		CLR_BIT(STK->CTRL, ENABLE);
 	}

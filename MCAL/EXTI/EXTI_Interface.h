@@ -11,10 +11,10 @@
 #define EXTI_Interface
 
 /** Error States **/
-#define ErrorLineRange	7
-#define ErrorTriggerSelection	8
-#define ErrorEXTI_ID	9
-#define ErrorEXTI_Function	10
+#define EXTI_ErrorLineRange	7
+#define EXTI_ErrorTriggerSelection	8
+#define EXTI_ErrorEXTI_ID	9
+#define EXTI_ErrorEXTI_Function	10
 
 /****************************************************************************/
 /*			** Lines Configuration from SYSCFG Driver **					*/
@@ -32,34 +32,34 @@
 /*		� Falling Edge														*/
 /*		� Any Change														*/
 /****************************************************************************/
-#define EXTILine0	0
-#define EXTILine1	1
-#define EXTILine2	2
-#define EXTILine3	3
-#define EXTILine4	4
-#define EXTILine5	5
-#define EXTILine6	6
-#define EXTILine7	7
-#define EXTILine8	8
-#define EXTILine9	9
-#define EXTILine10	10
-#define EXTILine11	11
-#define EXTILine12	12
-#define EXTILine13	13
-#define EXTILine14	14
-#define EXTILine15	15
+#define EXTI_Line0	0
+#define EXTI_Line1	1
+#define EXTI_Line2	2
+#define EXTI_Line3	3
+#define EXTI_Line4	4
+#define EXTI_Line5	5
+#define EXTI_Line6	6
+#define EXTI_Line7	7
+#define EXTI_Line8	8
+#define EXTI_Line9	9
+#define EXTI_Line10	10
+#define EXTI_Line11	11
+#define EXTI_Line12	12
+#define EXTI_Line13	13
+#define EXTI_Line14	14
+#define EXTI_Line15	15
 
 #define EXTI_RisingEdge		1
 #define EXTI_FallingEdge	2
 #define EXTI_OnChange		3
 
-u8 EXTI_EnableTriggerLine (u8 LineID, u8 Trigger);
-u8 EXTI_DisableLine (u8 LineID);
+u8 EXTI_u8EnableTriggerLine (u8 u8LineID, u8 u8Trigger);
+u8 EXTI_u8DisableLine (u8 u8LineID);
 /**********************/
 /* For Software Tests */
 /**********************/
-u8 EXTI_SoftWareTrigger (u8 LineID);
+u8 EXTI_u8SoftWareTrigger (u8 u8LineID);
 
 /** ********** Call Back Function ********** **/
-u8 EXTI_CallBack (u8 EXTIn, void (*EXTInFunction)(void));
+u8 EXTI_u8CallBack (u8 u8EXTIn, void (*pvvEXTInFunction)(void));
 #endif
