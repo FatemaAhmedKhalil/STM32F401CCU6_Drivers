@@ -2,20 +2,20 @@
 /***********************************************************************************************/
 /************************************* Author: Fatema Ahmed ************************************/
 /***************************************** Layer: HAL ******************************************/
-/************************************** Component: Kaypad **************************************/
+/**************************************** Component: S2P ***************************************/
 /***************************************** Version: 1.0 ****************************************/
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef KPD_Private
-#define KPD_Private
+#ifndef S2P_Interface
+#define S2P_Interface
 
-#define KPD_ColumnsNumber	4
-#define KPD_RowsNumber		4
-
-#define KPD_CheckPreseed	0
-
-static u8 KPD_ColumnArray[KPD_ColumnsNumber] = {KPD_Column0PIN, KPD_Column1PIN, KPD_Column2PIN, KPD_Column3PIN};
-static u8 KPD_RowArray[KPD_RowsNumber] = {KPD_Row0PIN, KPD_Row1PIN, KPD_Row2PIN, KPD_Row3PIN};
+/********************************************/
+/*	** Define The Pins'Port	**				*/
+/*	** Define The InPut Serial Pin	**		*/
+/*	** Define The Latch Clock Pin **		*/
+/*	** Define The Shift Clock Pin **		*/
+/********************************************/
+void S2P_voidSendData (u32 u32Data, u8 u8PortS2P, u8 u8SerialInPut, u8 u8LatchClk, u8 u8ShiftClk);
 
 #endif

@@ -15,40 +15,40 @@
 #include "KPD_Private.h"
 #include "KPD_Interface.h"
 
-u8 GetPressedKey (void)
+u8 KPD_u8GetPressedKey (void)
 {
-	u8 PressedKey = NoPressedKeys;
+	u8 u8PressedKey = KPD_NoPressedKeys;
 	u8 PinState;
 	u8 ColumnIndex;
 	u8 RowIndex;
 	
-	static u8 KPD[ColumnsNumber][RowsNumber] = KPD_Array;
+	static u8 KPD[KPD_ColumnsNumber][KPD_RowsNumber] = KPD_Array;
 	
-	for (ColumnIndex = 0; ColumnIndex < ColumnsNumber; ColumnIndex++)
+	for (ColumnIndex = 0; ColumnIndex < KPD_ColumnsNumber; ColumnIndex++)
 	{
 		// Activate Current Column
-		GPIO_FastControlPinValue (KPD_PORT, KPD_ColumnArray[ColumnIndex], Reset);
+		GPIO_u8FastControlPinValue (KPD_PORT, KPD_ColumnArray[ColumnIndex], GPIO_LOW);
 		
-		for (RowIndex = 0; RowIndex < RowsNumber; RowIndex++)
+		for (RowIndex = 0; RowIndex < KPD_RowsNumber; RowIndex++)
 		{
 			// Read the Current Row
-			GPIO_GetPinValue (KPD_PORT, KPD_RowArray[RowIndex], &PinState);
+			GPIO_u8GetPinValue (KPD_PORT, KPD_RowArray[RowIndex], &PinState);
 			
 			// Check if the Key is Pressed
 			if (PinState == KPD_CheckPreseed)
 			{
-				PressedKey = KPD[ColumnIndex][RowIndex];
+				u8PressedKey = KPD[ColumnIndex][RowIndex];
 				
 				// Polling (Busy Waiting) until the key is released
 				while(PinState == KPD_CheckPreseed)
-						GPIO_GetPinValue (KPD_PORT, KPD_RowArray[RowIndex], &PinState);
+						GPIO_u8GetPinValue (KPD_PORT, KPD_RowArray[RowIndex], &PinState);
 						
-					return PressedKey;
+					return u8PressedKey;
 			}
 		}
 		
 		// Deactivate Current Column
-		GPIO_FastControlPinValue (KPD_PORT, KPD_ColumnArray[ColumnIndex], Set);
+		GPIO_u8FastControlPinValue (KPD_PORT, KPD_ColumnArray[ColumnIndex], GPIO_HIGH);
 	}
-	return PressedKey;
+	return u8PressedKey;
 }

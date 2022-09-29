@@ -10,6 +10,6 @@
 #ifndef Seg_Private
 #define Seg_Private
 
-#define SegmentNumbers	10
+#define Seg_SegmentNumbers	10
 
 #endif

@@ -10,16 +10,16 @@
 #ifndef CLCD_Interface
 #define CLCD_Interface
 
-void CLCD_SendCommand (u8 Command);
+void CLCD_voidInitialization (void);
 
-void CLCD_SendData (u8 Data);
-void CLCD_SendString (const char* String);
-void CLCD_SendNumber (u16 Number);
+void CLCD_voidSendCommand (u8 u8Command);
 
-void CLCD_WriteSpecialChars (u8* Pattern, u8 OverwriteBlockNumber, u8 XPosition, u8 YPosition);
+void CLCD_voidSendData (u8 u8Data);
+void CLCD_voidSendString (const char* charString);
+void CLCD_voidSendNumber (u16 u16Number);
 
-void CLCD_Initialization (void);
+void CLCD_voidWriteSpecialChars (u8* u8Pattern, u8 u8OverwriteBlockNumber, u8 u8XPosition, u8 u8YPosition);
 
-void CLCD_SetCursor(u8 XPosition, u8 YPosition);
+void CLCD_voidSetCursor(u8 u8XPosition, u8 u8YPosition);
 
 #endif

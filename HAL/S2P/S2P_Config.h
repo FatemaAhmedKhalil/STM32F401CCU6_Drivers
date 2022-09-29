@@ -2,20 +2,23 @@
 /***********************************************************************************************/
 /************************************* Author: Fatema Ahmed ************************************/
 /***************************************** Layer: HAL ******************************************/
-/************************************** Component: Kaypad **************************************/
+/**************************************** Component: S2P ***************************************/
 /***************************************** Version: 1.0 ****************************************/
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef KPD_Private
-#define KPD_Private
+#ifndef S2P_Config
+#define S2P_Config
 
-#define KPD_ColumnsNumber	4
-#define KPD_RowsNumber		4
-
-#define KPD_CheckPreseed	0
-
-static u8 KPD_ColumnArray[KPD_ColumnsNumber] = {KPD_Column0PIN, KPD_Column1PIN, KPD_Column2PIN, KPD_Column3PIN};
-static u8 KPD_RowArray[KPD_RowsNumber] = {KPD_Row0PIN, KPD_Row1PIN, KPD_Row2PIN, KPD_Row3PIN};
-
+/********************************************************/
+/*	** Define The Number of S2P in the System **		*/
+/*														*/
+/* NOTE:												*/
+/*  Output Enable (Pin 13)								*/
+/*  Active−low Output Enable. A low on this input		*/
+/*  allows the data from the latches to be presented	*/
+/*  at the outputs. A high on this input forces			*/
+/*  the outputs (QA−QH) into the high−impedance state	*/
+/********************************************************/
+#define S2P_NumberofS2Ps 2
 #endif
