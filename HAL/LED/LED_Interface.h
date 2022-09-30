@@ -57,6 +57,6 @@ struct _LED_
 #define LED_Sink	0
 
 void LED_voidTurnON(LED LEDs);
-void LED_void_TurnOFF(LED LEDs);
+void LED_voidTurnOFF(LED LEDs);
 
 #endif

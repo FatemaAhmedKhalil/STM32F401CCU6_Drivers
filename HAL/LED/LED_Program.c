@@ -24,7 +24,7 @@ void LED_voidTurnON(LED LEDs)
 		GPIO_u8FastControlPinValue (LEDs.PORT, LEDs.PIN, GPIO_LOW);
 }
 
-void LED_void_TurnOFF(LED LEDs)
+void LED_voidTurnOFF(LED LEDs)
 {
 	if (LEDs.Connection == LED_Source)
 		GPIO_u8FastControlPinValue (LEDs.PORT, LEDs.PIN, GPIO_LOW);
