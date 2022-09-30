@@ -17,7 +17,7 @@ void STK_voidSetBusyWait (u32 u32Ticks);
 void STK_voidSetInterval_Single (u32 u32Ticks, void (*pvvSTKFunction)(void));
 void STK_voidSetInterval_Periodic (u32 u32Ticks, void (*pvvSTKFunction)(void));
 
-u32 STK_voidGetElapsedTime (void);
-u32 STK_voidGetRemainingTime (void);
+u32 STK_u32GetElapsedTime (void);
+u32 STK_u32GetRemainingTime (void);
 
 #endif

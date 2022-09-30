@@ -100,7 +100,7 @@ u8 RCC_u8SystemClkInitialization (void);
 #define RCC_TIM10	17
 #define RCC_TIM11	18
 
-u8 u8RCC_Enable (u8 u8Bus, u8 u8Perphiral);
-u8 u8RCC_Disable (u8 u8Bus, u8 u8Perphiral);
+u8 RCC_u8Enable (u8 u8Bus, u8 u8Perphiral);
+u8 RCC_u8Disable (u8 u8Bus, u8 u8Perphiral);
 
 #endif

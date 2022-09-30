@@ -386,7 +386,7 @@ u8 RCC_u8SystemClkInitialization (void)
 	return u8ErrorState;
 }
 
-u8 u8RCC_Enable (u8 u8Bus, u8 u8Perphiral)
+u8 RCC_u8Enable (u8 u8Bus, u8 u8Perphiral)
 {
 	u8 u8ErrorState = 0;
 	
@@ -407,7 +407,7 @@ u8 u8RCC_Enable (u8 u8Bus, u8 u8Perphiral)
 		
 	return u8ErrorState;
 }
-u8 u8RCC_Disable (u8 u8Bus, u8 u8Perphiral)
+u8 RCC_u8Disable (u8 u8Bus, u8 u8Perphiral)
 {
 	u8 u8ErrorState = 0;
 	

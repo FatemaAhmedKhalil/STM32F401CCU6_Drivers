@@ -85,12 +85,12 @@ void STK_voidSetInterval_Periodic (u32 u32Ticks, void (*pvvSTKFunction)(void))
 	SET_BIT(STK->CTRL, ENABLE);
 }
 
-u32 STK_voidGetElapsedTime (void)
+u32 STK_u32GetElapsedTime (void)
 {
 	return ( (STK->LOAD) - (STK->VAL) );
 }
 
-u32 STK_voidGetRemainingTime (void)
+u32 STK_u32GetRemainingTime (void)
 {
 	return (STK->VAL);
 }
