@@ -11,29 +11,36 @@
 #define SPI_Interface
 
 /** Error States **/
-#define SPI1_ErrorClkPhase					13
-#define SPI1_ErrorClkPolarity				14
-#define SPI1_ErrorBaudRate					15
-#define SPI1_ErrorFormatTrans				16
-#define SPI1_ErrorSlaveSoftwareSelection	17
-#define SPI1_ErrorDataFormat				18
-#define SPI1_ErrorEnable					19
+#define SPI_ErrorClkPhase					13
+#define SPI_ErrorClkPolarity				14
+#define SPI_ErrorBaudRate					15
+#define SPI_ErrorFormatTrans				16
+#define SPI_ErrorSlaveSoftwareSelection		17
+#define SPI_ErrorDataFormat					18
+#define SPI_ErrorEnable						19
 
-#define SPI2_ErrorClkPhase					20
-#define SPI2_ErrorClkPolarity				21
-#define SPI2_ErrorBaudRate					22
-#define SPI2_ErrorFormatTrans				23
-#define SPI2_ErrorSlaveSoftwareSelection	24
-#define SPI2_ErrorDataFormat				25
-#define SPI2_ErrorEnable					26
+typedef struct
+{
+	u32	CR1;		// SPI control register 1 (not used in I2S mode)
+	u32	CR2;		// SPI control register 2
+	u32	SR;			// SPI status register
+	u32	DR;			// SPI data register
+	u32	CRCPR;		// SPI CRC polynomial register (not used in I2S mode)
+	u32	RXCRCR;		// SPI RX CRC register (not used in I2S mode)
+	u32 TXCRCR;		// SPI TX CRC register (not used in I2S mode)
+	u32 I2SCFGR;	// SPI_I2S configuration register
+	u32 I2SPR;		// SPI_I2S PreScaler register
+}SPI_MemoryMap;
 
-#define SPI3_ErrorClkPhase					27
-#define SPI3_ErrorClkPolarity				28
-#define SPI3_ErrorBaudRate					29
-#define SPI3_ErrorFormatTrans				30
-#define SPI3_ErrorSlaveSoftwareSelection	31
-#define SPI3_ErrorDataFormat				32
-#define SPI3_ErrorEnable					33
+#define	SPI1		( (volatile SPI_MemoryMap *)(0x40013000) )
+#define	SPI2		( (volatile SPI_MemoryMap *)(0x40003800) )
+#define	SPI3		( (volatile SPI_MemoryMap *)(0x40003C00) )
+/****************************************************/
+/* Define Which SPI you will Use:					*/
+/*          -> SPI1									*/
+/*          -> SPI2									*/
+/*          -> SPI6									*/
+/****************************************************/
 
 /************************************************************/
 /* FIRST: Define: Master Mode								*/
@@ -85,19 +92,9 @@
 #define SPI_Disable		0
 #define SPI_Enable		1
 
-void SPI1_u8MasterMode (void);
-u8 SPI1_u8SlaveMode (u8 u8SoftSlavManag, u8 u8SlavSelect);
-u8 SPI1_u8Initialization(u8 u8ClkPhase, u8 u8ClkPolarity, u8 u8BaudRate, u8 u8FrameFormat, u8 u8DataFormat , u8 u8Enable);
-u16 SPI1_u16Transceive(u16 u16Data);
-
-void SPI2_u8MasterMode (void);
-u8 SPI2_u8SlaveMode (u8 u8SoftSlavManag, u8 u8SlavSelect);
-u8 SPI2_u8Initialization(u8 u8ClkPhase, u8 u8ClkPolarity, u8 u8BaudRate, u8 u8FrameFormat, u8 u8DataFormat , u8 u8Enable);
-u16 SPI2_u16Transceive(u16 u16Data);
-
-void SPI3_u8MasterMode (void);
-u8 SPI3_u8SlaveMode (u8 u8SoftSlavManag, u8 u8SlavSelect);
-u8 SPI3_u8Initialization(u8 u8ClkPhase, u8 u8ClkPolarity, u8 u8BaudRate, u8 u8FrameFormat, u8 u8DataFormat , u8 u8Enable);
-u16 SPI3_u16Transceive(u16 u16Data);
+void SPI_u8MasterMode (SPI_MemoryMap *SPIx);
+u8 SPI_u8SlaveMode (SPI_MemoryMap *SPIx, u8 u8SoftSlavManag, u8 u8SlavSelect);
+u8 SPI_u8Initialization(SPI_MemoryMap *SPIx, u8 u8ClkPhase, u8 u8ClkPolarity, u8 u8BaudRate, u8 u8FrameFormat, u8 u8DataFormat , u8 u8Enable);
+u16 SPI_u16Transceive(SPI_MemoryMap *SPIx, u16 u16Data);
 
 #endif
