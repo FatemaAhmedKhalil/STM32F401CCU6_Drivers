@@ -85,10 +85,10 @@ u8 USART_u8ReceiveByteSynchNonBlocking ( USART_MemoryMap *USARTx )
 	u8 Data = 0;
 	u32 TimeOut = 0;
 	
-	while ( ( GET_BIT(USARTx->SR, RXNE) == 0 ) && ( TimeOut < 500000 ) )
+	while ( ( GET_BIT(USARTx->SR, RXNE) == 0 ) && ( TimeOut < USART_TimeThreshold ) )
 		TimeOut++;
 	
-	if (TimeOut == USART_ThresholdValue)
+	if (TimeOut == USART_TimeThreshold)
 		Data = USART_TimeOut;
 		
 	else
