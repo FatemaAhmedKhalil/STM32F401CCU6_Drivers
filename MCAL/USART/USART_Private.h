@@ -10,9 +10,29 @@
 #ifndef USART_Private
 #define USART_Private
 
-/* Equation to Get Baud Rate */
-#define GetBaudRate(Fpclk, Over8, BaudRate) \
-	((Fpclk) / ((8 * (2 - Over8)) * (BaudRate)))
+/**********************************************/
+/*     ST Baud Rate Generator Macros          */
+/**********************************************/
+
+#define UART_DIV_SAMPLING16(_PCLK_, _BAUD_)            ((u32)((((u64)(_PCLK_))*25U)/(4U*((u64)(_BAUD_)))))
+#define UART_DIVMANT_SAMPLING16(_PCLK_, _BAUD_)        (UART_DIV_SAMPLING16((_PCLK_), (_BAUD_))/100U)
+#define UART_DIVFRAQ_SAMPLING16(_PCLK_, _BAUD_)        ((((UART_DIV_SAMPLING16((_PCLK_), (_BAUD_)) - (UART_DIVMANT_SAMPLING16((_PCLK_), (_BAUD_)) * 100U)) * 16U) + 50U) / 100U)
+/* UART BRR = mantissa + overflow + fraction
+            = (UART DIVMANT << 4) + (UART DIVFRAQ & 0xF0) + (UART DIVFRAQ & 0x0FU) */
+#define UART_BRR_SAMPLING16(_PCLK_, _BAUD_)            ((UART_DIVMANT_SAMPLING16((_PCLK_), (_BAUD_)) << 4U) + \
+                                                        (UART_DIVFRAQ_SAMPLING16((_PCLK_), (_BAUD_)) & 0xF0U) + \
+                                                        (UART_DIVFRAQ_SAMPLING16((_PCLK_), (_BAUD_)) & 0x0FU))
+
+#define UART_DIV_SAMPLING8(_PCLK_, _BAUD_)             ((u32)((((u64)(_PCLK_))*25U)/(2U*((u64)(_BAUD_)))))
+#define UART_DIVMANT_SAMPLING8(_PCLK_, _BAUD_)         (UART_DIV_SAMPLING8((_PCLK_), (_BAUD_))/100U)
+#define UART_DIVFRAQ_SAMPLING8(_PCLK_, _BAUD_)         ((((UART_DIV_SAMPLING8((_PCLK_), (_BAUD_)) - (UART_DIVMANT_SAMPLING8((_PCLK_), (_BAUD_)) * 100U)) * 8U) + 50U) / 100U)
+/* UART BRR = mantissa + overflow + fraction
+            = (UART DIVMANT << 4) + ((UART DIVFRAQ & 0xF8) << 1) + (UART DIVFRAQ & 0x07U) */
+#define UART_BRR_SAMPLING8(_PCLK_, _BAUD_)             ((UART_DIVMANT_SAMPLING8((_PCLK_), (_BAUD_)) << 4U) + \
+                                                        ((UART_DIVFRAQ_SAMPLING8((_PCLK_), (_BAUD_)) & 0xF8U) << 1U) + \
+                                                        (UART_DIVFRAQ_SAMPLING8((_PCLK_), (_BAUD_)) & 0x07U))
+
+/***********************************************************************************************************************************************************************************/
 
 /** SR Register Bits **/
 #define PE		0	// Parity error

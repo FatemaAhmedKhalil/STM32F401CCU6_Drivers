@@ -36,7 +36,7 @@ typedef struct
 
 typedef struct
 {
-	u8 BaudRate;
+	u32 BaudRate;
 	u8 DataWidth;
 	u8 StopBits;
 	u8 Parity_Enable;
@@ -53,24 +53,6 @@ typedef struct
 	u8 ClockPhase;
 	u8 LastBitClockPulse;
 }USART_ClockInitialization;
-
-/************************************
- * Baud Rate Options:				*
- * 		1 -->  USART_9600_16MHZ     *
- * 		2 -->  USART_9600_25MHZ     *
- * 		3 -->  USART_19200_16MHZ    *
- * 		4 -->  USART_19200_25MHZ    *
- * 		5 -->  USART_115200_8MHZ    *
- * 		6 -->  USART_115200_16MHZ   *
-  * 	7 -->  USART_115200_25MHZ   *
- ************************************/
-#define USART_9600_16MHZ         0x682
-#define USART_9600_25MHZ         0xA2C
-#define USART_19200_16MHZ        0x341
-#define USART_19200_25MHZ        0x516
-#define USART_115200_8MHZ		 0x45
-#define USART_115200_16MHZ       0x8A
-#define USART_115200_25MHZ       0xD8
 
 
 #define USART_OVER_SAMPLING_16	0
@@ -109,6 +91,7 @@ void USART_Disable(USART_MemoryMap *USARTx);
 void USART_voidTransmitByte (USART_MemoryMap *USARTx, u8 u8Byte);
 void USART_voidTransmitString (USART_MemoryMap *USARTx, u8 *ptru8String);
 u8 USART_u8ReceiveByteSynchNonBlocking (USART_MemoryMap *USARTx);
+u8 USART_u8ReceiveByteSynchBlocking ( USART_MemoryMap *USARTx );
 void USART_RxInterruptStatus(USART_MemoryMap *USARTx, u8 u8Status);
 void USART_voidClearFlags(USART_MemoryMap *USARTx);
 u8 USART_u8ReadDataRegister(USART_MemoryMap *USARTx);

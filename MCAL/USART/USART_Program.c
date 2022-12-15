@@ -24,7 +24,12 @@ void (*USART_USART6Function)(void) = NULL;
 void USART_voidInitialization(USART_Initialization *InitializatioStruct, USART_ClockInitialization *ClockInitializatioStruct, USART_MemoryMap *USARTx)
 {
 
-	USARTx->BRR = InitializatioStruct->BaudRate;
+	// set the baud rate
+	switch(InitializatioStruct->Oversampling)
+	{
+		case USART_OVER_SAMPLING_16 : USARTx->BRR = UART_BRR_SAMPLING16(USART_PCLK, InitializatioStruct->BaudRate); break;
+		case USART_OVER_SAMPLING_8  : USARTx->BRR = UART_BRR_SAMPLING8(USART_PCLK, InitializatioStruct->BaudRate) ; break;
+	}
 
 	USARTx->CR1 = (InitializatioStruct->Oversampling << OVER8)     |
 				  (InitializatioStruct->HardwareFlowControl << UE) |
@@ -94,6 +99,17 @@ u8 USART_u8ReceiveByteSynchNonBlocking ( USART_MemoryMap *USARTx )
 	else
 		Data = USARTx->DR;
 		
+	return Data;
+}
+
+u8 USART_u8ReceiveByteSynchBlocking ( USART_MemoryMap *USARTx )
+{
+	u8 Data = 0;
+
+	while ( ( GET_BIT(USARTx->SR, RXNE) == 0 ) );
+
+	Data = USARTx->DR;
+
 	return Data;
 }
 
