@@ -17,7 +17,7 @@
 #include "CLCD_Private.h"
 #include "CLCD_Config.h"
 
-u8 u8Global_Counter = 0; // to Count the Number of Characters in the line
+u8 u8Global_Counter; // to Count the Number of Characters in the line
 
 void CLCD_voidInitialization (void)
 {
@@ -59,6 +59,7 @@ void CLCD_voidSendCommand (u8 u8Command)
 
 void CLCD_voidSendData (u8 u8Data)
 {
+	u8Global_Counter = 0;
 	GPIO_u8FastControlPinValue (CLCD_ControlPort, CLCD_RS, GPIO_HIGH); // Set RS to High for Data
 	GPIO_u8FastControlPinValue (CLCD_ControlPort, CLCD_RW, GPIO_LOW); // Set RS to Low for Write
 
