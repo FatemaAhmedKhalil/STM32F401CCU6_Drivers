@@ -15,8 +15,8 @@
 /* Define The Initial Value of Keys ( No Press State)		    */
 /****************************************************************/
 
-#ifndef KPD_Config
-#define KPD_Config
+#ifndef KPD_CONFIG_H_
+#define KPD_CONFIG_H_
 
 #define KPD_PORTA	1
 #define KPD_PORTB	2

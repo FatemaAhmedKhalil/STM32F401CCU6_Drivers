@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef Stepper_Interface
-#define Stepper_Interface
+#ifndef Stepper_INTERFACE_H_
+#define Stepper_INTERFACE_H_
 
 #define StepperMotor_PORTA	1
 #define StepperMotor_PORTB	2

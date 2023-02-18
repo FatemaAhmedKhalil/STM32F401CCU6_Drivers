@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef CLCD_Interface
-#define CLCD_Interface
+#ifndef CLCD_INTERFACE_H_
+#define CLCD_INTERFACE_H_
 
 void CLCD_voidInitialization (void);
 

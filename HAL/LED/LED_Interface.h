@@ -21,8 +21,8 @@
 /**																														**/
 /*************************************************************************************************************************/
 
-#ifndef LED_Interface
-#define LED_Interface
+#ifndef LED_INTERFACE_H_
+#define LED_INTERFACE_H_
 
 typedef struct _LED_ LED;
 struct _LED_

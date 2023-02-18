@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef KPD_Interface
-#define KPD_Interface
+#ifndef KPD_INTERFACE_H_
+#define KPD_INTERFACE_H_
 
 
 #define KPD_NoPressedKeys	0xff

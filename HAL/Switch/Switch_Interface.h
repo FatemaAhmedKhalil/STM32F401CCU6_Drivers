@@ -15,8 +15,8 @@
 /**																																**/
 /** Define The Switch Type		-->		PushButton or ToggleButton or DIPSwitch or LimitSwitch or ReedSwitch or RotarySwitch	**/
 /*********************************************************************************************************************************/
-#ifndef Switch_Interface
-#define Switch_Interface
+#ifndef Switch_INTERFACE_H_
+#define Switch_INTERFACE_H_
 
 typedef struct _Switch_ SWITCH;
 struct _Switch_

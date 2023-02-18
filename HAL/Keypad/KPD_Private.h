@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef KPD_Private
-#define KPD_Private
+#ifndef KPD_PRIVATE_H_
+#define KPD_PRIVATE_H_
 
 #define KPD_ColumnsNumber	4
 #define KPD_RowsNumber		4
