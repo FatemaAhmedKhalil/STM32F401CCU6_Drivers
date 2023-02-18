@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef RTOS_Interface
-#define RTOS_Interface
+#ifndef RTOS_INTERFACE_H_
+#define RTOS_INTERFACE_H_
 
 /** Error States **/
 #define RTOS_ErrorReservedPriority	12
