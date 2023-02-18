@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef PORT_Register
-#define PORT_Register
+#ifndef PORT_REGISTER_H_
+#define PORT_REGISTER_H_
 
 #define	GPIOA_BaseAddress	 (u32)(0x40020000)
 #define	GPIOB_BaseAddress	 (u32)(0x40020400)

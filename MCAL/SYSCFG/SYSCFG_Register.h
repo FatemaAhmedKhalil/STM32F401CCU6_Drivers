@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef SYSCFG_Register
-#define SYSCFG_Register
+#ifndef SYSCFG_REGISTER_H_
+#define SYSCFG_REGISTER_H_
 
 #define SYSCFG_BaseAdress		(u32)(0x40013800)
 

@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef GPIO_Register
-#define GPIO_Register
+#ifndef GPIO_REGISTER_H_
+#define GPIO_REGISTER_H_
 
 #define	GPIOA_BaseAddress	 (u32)(0x40020000)
 #define	GPIOB_BaseAddress	 (u32)(0x40020400)

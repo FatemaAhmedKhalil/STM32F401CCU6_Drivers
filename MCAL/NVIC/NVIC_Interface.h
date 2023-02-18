@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef NVIC_Interface
-#define NVIC_Interface
+#ifndef NVIC_INTERFACE_H_
+#define NVIC_INTERFACE_H_
 
 /** Error States **/
 #define NVIC_ErrorGroupsORSubsRange	6

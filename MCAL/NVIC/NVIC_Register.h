@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef NVIC_Register
-#define NVIC_Register
+#ifndef NVIC_REGISTER_H_
+#define NVIC_REGISTER_H_
 
 #define NVIC_BaseAdress			(u32)(0xE000E100)	// NVIC Base Address
 typedef struct

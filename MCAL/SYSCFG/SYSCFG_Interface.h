@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef SYSCFG_Interface
-#define SYSCFG_Interface
+#ifndef SYSCFG_INTERFACE_H_
+#define SYSCFG_INTERFACE_H_
 
 /** Error States **/
 #define SYSCFG_ErrorSYSCFGLineRange	11

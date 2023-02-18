@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef RCC_Interface
-#define RCC_Interface
+#ifndef RCC_INTERFACE_H_
+#define RCC_INTERFACE_H_
 
 /** Error States **/
 #define RCC_ErrorPerphiralRangeRCC	1

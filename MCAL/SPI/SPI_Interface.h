@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef SPI_Interface
-#define SPI_Interface
+#ifndef SPI_INTERFACE_H_
+#define SPI_INTERFACE_H_
 
 /** Error States **/
 #define SPI_ErrorClkPhase					13

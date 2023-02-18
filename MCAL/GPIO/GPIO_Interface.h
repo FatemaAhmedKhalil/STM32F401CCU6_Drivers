@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef GPIO_Interface
-#define GPIO_Interface
+#ifndef GPIO_INTERFACE_H_
+#define GPIO_INTERFACE_H_
 
 /** Error States **/
 #define GPIO_ErrorCheckPerphiralRange	4

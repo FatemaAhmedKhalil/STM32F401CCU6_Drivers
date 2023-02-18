@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef USART_Config
-#define USART_Config
+#ifndef USART_CONFIG_H_
+#define USART_CONFIG_H_
 
 #define USART_PCLK     16000000UL
 #define USART_TimeThreshold		500000

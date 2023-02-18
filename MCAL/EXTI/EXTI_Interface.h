@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef EXTI_Interface
-#define EXTI_Interface
+#ifndef EXTI_INTERFACE_H_
+#define EXTI_INTERFACE_H_
 
 /** Error States **/
 #define EXTI_ErrorLineRange	7

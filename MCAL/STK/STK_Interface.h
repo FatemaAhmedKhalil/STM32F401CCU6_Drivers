@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef STK_Interface
-#define STK_Interface
+#ifndef STK_INTERFACE_H_
+#define STK_INTERFACE_H_
 
 void STK_voidInitialization (void);
 

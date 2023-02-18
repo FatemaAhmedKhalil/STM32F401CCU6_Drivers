@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef STK_Private
-#define STK_Private
+#ifndef STK_PRIVATE_H_
+#define STK_PRIVATE_H_
 
 /** CTRL Register Bits **/
 #define	ENABLE		0	// Counter enable
