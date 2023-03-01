@@ -12,7 +12,6 @@
 
 #include "SPI_Config.h"
 #include "SPI_Private.h"
-#include "SPI_Register.h"
 #include "SPI_Interface.h"
 
 u8 SPI_u8Initialization(SPI_MemoryMap *SPIx, u8 u8ClkPhase, u8 u8ClkPolarity, u8 u8BaudRate, u8 u8FrameFormat, u8 u8DataFormat , u8 u8Enable)
