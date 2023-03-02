@@ -92,10 +92,10 @@ typedef struct
 #define SPI_Disable		0
 #define SPI_Enable		1
 
-void SPI_u8MasterMode (SPI_MemoryMap *SPIx);
-u8 SPI_u8SlaveMode (SPI_MemoryMap *SPIx, u8 u8SoftSlavManag, u8 u8SlavSelect);
-u8 SPI_u8Initialization(SPI_MemoryMap *SPIx, u8 u8ClkPhase, u8 u8ClkPolarity, u8 u8BaudRate, u8 u8FrameFormat, u8 u8DataFormat , u8 u8Enable);
-void SPI_voidTransmit(SPI_MemoryMap *SPIx, u16 u16Data);
-u16 SPI_u16Receive(SPI_MemoryMap *SPIx);
+void SPI_u8MasterMode (volatile SPI_MemoryMap *SPIx);
+u8 SPI_u8SlaveMode (volatile SPI_MemoryMap *SPIx, u8 u8SoftSlavManag, u8 u8SlavSelect);
+u8 SPI_u8Initialization(volatile SPI_MemoryMap *SPIx, u8 u8ClkPhase, u8 u8ClkPolarity, u8 u8BaudRate, u8 u8FrameFormat, u8 u8DataFormat , u8 u8Enable);
+void SPI_voidTransmit(volatile SPI_MemoryMap *SPIx, u16 u16Data);
+u16 SPI_u16Receive(volatile SPI_MemoryMap *SPIx);
 
 #endif
