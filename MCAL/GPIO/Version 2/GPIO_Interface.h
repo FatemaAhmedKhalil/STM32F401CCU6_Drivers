@@ -1,6 +1,6 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
-/************************************* Author: Fatema Ahmed ************************************/
+/****************************** Author: Fatema Ahmed & Armia Khairy ****************************/
 /***************************************** Layer: MCAL *****************************************/
 /****************************************** SWC: GPIO ******************************************/
 /**************************************** Version: 1.00 ****************************************/
@@ -59,7 +59,7 @@
 #define GPIO_PUPDR_PULLUP       0b01
 #define GPIO_PUPDR_PULLDOWN     0b10
 
-u8 GPIO_u8SetPinMode (u8 u8Port, u8 u8Pin, u8 u8Value);
+u8 GPIO_u8SetPinValue (u8 u8Port, u8 u8Pin, u8 u8Value);
 
 u8 GPIO_u8FastControlPinValue (u8 u8Port, u8 u8Pin, u8 u8Status);
 
@@ -69,11 +69,11 @@ u8 GPIO_u8GetPinValue (u8 u8Port, u8 u8Pin, u8* pu8Value);
 
 u8 GPIO_u8TogglePinValue(u8 u8Port, u8 u8Pin);
 
-u8 GPIO_u8SetGPIOPinMode(u8 u8Port,u8 u8Pin, u8 u8Mode);
+u8 GPIO_u8SetGPIOPinMode(u8 u8Port, u8 u8Pin, u8 u8Mode);
 
-u8 GPIO_u8SetOutputPinMode(u8 u8Port,u8 u8Pin, u8 u8Mode);
+u8 GPIO_u8SetOutputPinMode(u8 u8Port, u8 u8Pin, u8 u8Mode);
 
-u8 GPIO_u8SetPullResMode(u8 u8Port,u8 u8Pin, u8 u8Mode);
+u8 GPIO_u8SetPullResMode(u8 u8Port, u8 u8Pin, u8 u8Mode);
 
 /********************************************************************/
 /* Select Alternative Function										*/

@@ -1,6 +1,6 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
-/************************************* Author: Fatema Ahmed ************************************/
+/****************************** Author: Fatema Ahmed & Armia Khairy ****************************/
 /***************************************** Layer: MCAL *****************************************/
 /****************************************** SWC: GPIO ******************************************/
 /**************************************** Version: 1.00 ****************************************/
@@ -15,26 +15,25 @@
 #include "GPIO_Register.h"
 #include "GPIO_Interface.h"
 
-
-u8 GPIO_u8SetPinMode(u8 u8Port,u8 u8Pin, u8 u8Mode)
+u8 GPIO_u8SetGPIOPinMode(u8 u8Port, u8 u8Pin, u8 u8Mode)
 {
 	u8 u8ErrorState = 0;
 	if ( (u8Port == GPIO_PORTA && u8Pin <= GPIO_PIN15 ) || (u8Port == GPIO_PORTB && u8Pin <= GPIO_PIN15 ) || ( u8Port == GPIO_PORTC && ( u8Pin >= GPIO_PIN13 ||  u8Pin <= GPIO_PIN15 ) ) ) // Check Ranges
 	{
-		u8Pin<<=1; //Multiply by 2
+		u8Pin<<=1; // Multiply by 2
 		switch (u8Port)
 		{
 			case GPIO_PORTA:
-				GPIOA->MODER &= (~(0b11<<u8Pin));
+				GPIOA->MODER &= (~(0b11<<u8Pin)); // Resets the two Values
 				GPIOA->MODER |= u8Mode<<u8Pin;
 				break;
 
 			case GPIO_PORTB:
-				GPIOB->MODER &= (~(0b11<<u8Pin));
+				GPIOB->MODER &= (~(0b11<<u8Pin)); // Resets the two Values
 				GPIOB->MODER |= u8Mode<<u8Pin;
 				break;
 			case GPIO_PORTC:
-				GPIOC->MODER &= (~(0b11<<u8Pin));
+				GPIOC->MODER &= (~(0b11<<u8Pin)); // Resets the two Values
 				GPIOC->MODER |= u8Mode<<u8Pin;
 			default:
 				u8ErrorState = GPIO_ErrorCheckPerphiralRange;
@@ -46,13 +45,13 @@ u8 GPIO_u8SetPinMode(u8 u8Port,u8 u8Pin, u8 u8Mode)
 	return u8ErrorState;
 }
 
-u8 GPIO_u8SetOutputPinMode(u8 u8Port,u8 u8Pin, u8 u8Mode)
+u8 GPIO_u8SetOutputPinMode(u8 u8Port, u8 u8Pin, u8 u8Mode)
 {
 	u8 u8ErrorState = 0;
 	
 	if ( (u8Port == GPIO_PORTA && u8Pin <= GPIO_PIN15 ) || (u8Port == GPIO_PORTB && u8Pin <= GPIO_PIN15 ) || ( u8Port == GPIO_PORTC && ( u8Pin >= GPIO_PIN13 ||  u8Pin <= GPIO_PIN15 ) ) ) // Check Ranges
 	{
-		if (u8Mode == GPIO_OTYPER_PUSH_PULL) // Low Value means 0 (Clear)
+		if (u8Mode == GPIO_OTYPER_PUSH_PULL)
 		{
 			switch (u8Port)
 			{
@@ -63,7 +62,7 @@ u8 GPIO_u8SetOutputPinMode(u8 u8Port,u8 u8Pin, u8 u8Mode)
 			}
 		}
 		
-		else if (u8Mode == GPIO_OTYPER_OPEN_DRAIN)	// High Value means 1 (Set)
+		else if (u8Mode == GPIO_OTYPER_OPEN_DRAIN)
 		{
 			switch (u8Port)
 			{
@@ -90,7 +89,7 @@ u8 GPIO_u8SetPinValue (u8 u8Port, u8 u8Pin, u8 u8Value)
 	
 	if ( (u8Port == GPIO_PORTA && u8Pin <= GPIO_PIN15 ) || (u8Port == GPIO_PORTB && u8Pin <= GPIO_PIN15 ) || ( u8Port == GPIO_PORTC && ( u8Pin >= GPIO_PIN13 ||  u8Pin <= GPIO_PIN15 ) ) ) // Check Ranges
 	{
-		if (u8Value == GPIO_LOW) // Low Value means 0 (Clear)
+		if (u8Value == GPIO_LOW)
 		{
 			switch (u8Port)
 			{
@@ -101,7 +100,7 @@ u8 GPIO_u8SetPinValue (u8 u8Port, u8 u8Pin, u8 u8Value)
 			}
 		}
 		
-		else if (u8Value == GPIO_HIGH)	// High Value means 1 (Set)
+		else if (u8Value == GPIO_HIGH)
 		{
 			switch (u8Port)
 			{
@@ -213,12 +212,12 @@ u8 GPIO_u8TogglePinValue(u8 u8Port, u8 u8Pin)
 	return u8ErrorState;
 }
 
-u8 GPIO_u8SetPullResMode(u8 u8Port,u8 u8Pin, u8 u8Mode)
+u8 GPIO_u8SetPullResMode(u8 u8Port, u8 u8Pin, u8 u8Mode)
 {
 	u8 u8ErrorState = 0;
 	if ( (u8Port == GPIO_PORTA && u8Pin <= GPIO_PIN15 ) || (u8Port == GPIO_PORTB && u8Pin <= GPIO_PIN15 ) || ( u8Port == GPIO_PORTC && ( u8Pin >= GPIO_PIN13 ||  u8Pin <= GPIO_PIN15 ) ) ) // Check Ranges
 	{
-		u8Pin<<=1; //Fast Multiply by 2
+		u8Pin<<=1; // Multiply by 2
 		switch (u8Port)
 		{
 			case GPIO_PORTA:
@@ -245,54 +244,56 @@ u8 GPIO_u8SetPullResMode(u8 u8Port,u8 u8Pin, u8 u8Mode)
 
 u8 GPIO_voidSetAlternativeFunction(u8 u8Port, u8 u8Pin, u8 u8AlternateFunction)
 {
-{
 	u8 u8ErrorState = 0;
-	if (u8Pin<8)
+	if ( (u8Port == GPIO_PORTA && u8Pin <= GPIO_PIN15 ) || (u8Port == GPIO_PORTB && u8Pin <= GPIO_PIN15 ) || ( u8Port == GPIO_PORTC && ( u8Pin >= GPIO_PIN13 ||  u8Pin <= GPIO_PIN15 ) ) ) // Check Ranges
 	{
-		switch (u8Port)
+		if (u8Pin < 8)
 		{
-			case GPIO_PORTA:
-			GPIOA->AFRL &= ~(0b1111<<(u8Pin*4));
-			GPIOA->AFRL |= (u8AlternateFunction<<(u8Pin*4));
-			break;
+			switch (u8Port)
+			{
+				case GPIO_PORTA:
+					GPIOA->AFRL &= ~(0b1111<<(u8Pin*4));
+					GPIOA->AFRL |= (u8AlternateFunction<<(u8Pin*4));
+					break;
 
-			case GPIO_PORTB:
-			GPIOB->AFRL &= ~(0b1111<<(u8Pin*4));
-			GPIOB->AFRL |= (u8AlternateFunction<<(u8Pin*4));
-			break;
+				case GPIO_PORTB:
+					GPIOB->AFRL &= ~(0b1111<<(u8Pin*4));
+					GPIOB->AFRL |= (u8AlternateFunction<<(u8Pin*4));
+					break;
 
-			case GPIO_PORTC:
-			GPIOC->AFRL &= ~(0b1111<<(u8Pin*4));
-			GPIOC->AFRL |= (u8AlternateFunction<<(u8Pin*4));
-			break;
-			default: u8ErrorState = GPIO_ErrorCheckPerphiralRange; break;
+				case GPIO_PORTC:
+					GPIOC->AFRL &= ~(0b1111<<(u8Pin*4));
+					GPIOC->AFRL |= (u8AlternateFunction<<(u8Pin*4));
+					break;
+				default: u8ErrorState = GPIO_ErrorCheckPerphiralRange; break;
+			}
 		}
-	}
 
-	else if (u8Pin>=8)
-	{
-		switch (u8Port)
+		else if (u8Pin >= 8)
 		{
-			case GPIO_PORTA:
-			GPIOA->AFRH &= ~(0b1111<<((u8Pin-8)*4));
-			GPIOA->AFRH |= (u8AlternateFunction<<(u8Pin-8)*4);
-			break;
+			switch (u8Port)
+			{
+				case GPIO_PORTA:
+					GPIOA->AFRH &= ~(0b1111<<((u8Pin-8)*4));
+					GPIOA->AFRH |= (u8AlternateFunction<<(u8Pin-8)*4);
+					break;
 
-			case GPIO_PORTB:
-			GPIOB->AFRH &= ~(0b1111<<(u8Pin-8)*4);
-			GPIOB->AFRH |= (u8AlternateFunction<<(u8Pin-8)*4);
-			break;
+				case GPIO_PORTB:
+					GPIOB->AFRH &= ~(0b1111<<(u8Pin-8)*4);
+					GPIOB->AFRH |= (u8AlternateFunction<<(u8Pin-8)*4);
+					break;
 
-			case GPIO_PORTC:
-			GPIOC->AFRH &= ~(0b1111<<(u8Pin-8)*4);
-			GPIOC->AFRH |= (u8AlternateFunction<<(u8Pin-8)*4);
-			break;
-			default: u8ErrorState = GPIO_ErrorCheckPerphiralRange; break;
+				case GPIO_PORTC:
+					GPIOC->AFRH &= ~(0b1111<<(u8Pin-8)*4);
+					GPIOC->AFRH |= (u8AlternateFunction<<(u8Pin-8)*4);
+				break;
+				default: u8ErrorState = GPIO_ErrorCheckPerphiralRange; break;
+			}
 		}
 	}
 
 	else
-	u8ErrorState = GPIO_ErrorCheckPerphiralRange;
+		u8ErrorState = GPIO_ErrorCheckPerphiralRange;
 
 	return u8ErrorState;
 }
