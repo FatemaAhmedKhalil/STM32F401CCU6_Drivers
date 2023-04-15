@@ -60,10 +60,10 @@
 #define GPIO_PUPDR_PULLDOWN     0b10
 
 // GPIO Speed
-#define Low_Speed               00
-#define Medium_Speed            01
-#define High_Speed              10
-#define Very_High_Speed         11
+#define GPIO_Low_Speed               00
+#define GPIO_Medium_Speed            01
+#define GPIO_High_Speed              10
+#define GPIO_Very_High_Speed         11
 
 u8 GPIO_u8SetPinValue (u8 u8Port, u8 u8Pin, u8 u8Value);
 
