@@ -1,9 +1,9 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
-/************************************* Author: Fatema Ahmed ************************************/
+/****************************** Author: Fatema Ahmed & Armia Khairy ****************************/
 /***************************************** Layer: MCAL *****************************************/
 /****************************************** SWC: GPIO ******************************************/
-/**************************************** Version: 2.00 ****************************************/
+/**************************************** Version: 1.00 ****************************************/
 /***********************************************************************************************/
 /***********************************************************************************************/
 
@@ -44,20 +44,26 @@
 #define GPIO_PIN14	14
 #define GPIO_PIN15	15
 
-//GPIO MODER MODES
+// GPIO MODER MODES
 #define GPIO_MODER_INPUT        0b00
 #define GPIO_MODER_OUTPUT       0b01
 #define GPIO_MODER_ALTERNATE    0b10
 #define GPIO_MODER_ANALOG       0b11
 
-//GPIO OTYPER Modes
+// GPIO OTYPER Modes
 #define GPIO_OTYPER_PUSH_PULL   0
 #define GPIO_OTYPER_OPEN_DRAIN  1
 
-//GPIO PUPDR Modes
+// GPIO PUPDR Modes
 #define GPIO_PUPDR_NO           0b00
 #define GPIO_PUPDR_PULLUP       0b01
 #define GPIO_PUPDR_PULLDOWN     0b10
+
+// GPIO Speed
+#define Low_Speed               00
+#define Medium_Speed            01
+#define High_Speed              10
+#define Very_High_Speed         11
 
 u8 GPIO_u8SetPinValue (u8 u8Port, u8 u8Pin, u8 u8Value);
 
@@ -74,6 +80,8 @@ u8 GPIO_u8SetGPIOPinMode(u8 u8Port, u8 u8Pin, u8 u8Mode);
 u8 GPIO_u8SetOutputPinMode(u8 u8Port, u8 u8Pin, u8 u8Mode);
 
 u8 GPIO_u8SetPullResMode(u8 u8Port, u8 u8Pin, u8 u8Mode);
+
+u8 GPIO_u8SetPinOutputSpeed(u8 u8Port, u8 u8Pin, u8 u8OutputSpeed);
 
 /********************************************************************/
 /* Select Alternative Function										*/

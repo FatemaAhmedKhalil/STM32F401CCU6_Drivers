@@ -1,9 +1,9 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
-/************************************* Author: Fatema Ahmed ************************************/
+/****************************** Author: Fatema Ahmed & Armia Khairy ****************************/
 /***************************************** Layer: MCAL *****************************************/
 /****************************************** SWC: GPIO ******************************************/
-/**************************************** Version: 2.00 ****************************************/
+/**************************************** Version: 1.00 ****************************************/
 /***********************************************************************************************/
 /***********************************************************************************************/
 
@@ -292,6 +292,35 @@ u8 GPIO_voidSetAlternativeFunction(u8 u8Port, u8 u8Pin, u8 u8AlternateFunction)
 		}
 	}
 
+	else
+		u8ErrorState = GPIO_ErrorCheckPerphiralRange;
+
+	return u8ErrorState;
+}
+
+u8 GPIO_u8SetPinOutputSpeed(u8 u8Port, u8 u8Pin, u8 u8OutputSpeed)
+{
+	u8 u8ErrorState = 0;
+	if ( (u8Port == GPIO_PORTA && u8Pin <= GPIO_PIN15 ) || (u8Port == GPIO_PORTB && u8Pin <= GPIO_PIN15 ) || ( u8Port == GPIO_PORTC && ( u8Pin >= GPIO_PIN13 ||  u8Pin <= GPIO_PIN15 ) ) ) // Check Ranges
+	{
+		switch(u8Port)
+		{
+			case GPIO_PORTA:
+				GPIOA->OSPEEDR &= ~(0b11<<(u8Pin*2));
+				GPIOA->OSPEEDR |= (u8OutputSpeed << (u8Pin*2));
+				break;
+
+			case GPIO_PORTB:
+				GPIOB->OSPEEDR &= ~(0b11<<(u8Pin*2));
+				GPIOB->OSPEEDR |= (u8OutputSpeed << (u8Pin*2));
+				break;
+
+			case GPIO_PORTC:
+				GPIOC->OSPEEDR &= ~(0b11<<(u8Pin*2));
+				GPIOC->OSPEEDR |= (u8OutputSpeed << (u8Pin*2));
+				break;
+		}
+	}
 	else
 		u8ErrorState = GPIO_ErrorCheckPerphiralRange;
 
