@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef RCC_PRIVATE_H_
-#define RCC_PRIVATE_H_
+#ifndef RCC_Private
+#define RCC_Private
 
 /** CR Register Bits **/
 #define	HSION		0	// Internal high-speed clock enable

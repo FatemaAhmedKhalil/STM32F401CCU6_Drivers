@@ -7,8 +7,8 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef RCC_CONFIG_H_
-#define RCC_CONFIG_H_
+#ifndef RCC_Config
+#define RCC_Config
 
 /************************************************************************/
 /* Initialize Clock Security System										*/
@@ -41,8 +41,8 @@
 /*			--> PLLI2S ON		1										*/
 /*			--> PLLI2S OFF		0										*/
 /************************************************************************/
-#define HSIBit		0
-#define HSEBit		1
+#define HSIBit		1
+#define HSEBit		0
 #define	PLLBit		0
 #define PLLI2SBit	0
 
@@ -143,8 +143,7 @@
 /*																								*/
 /* NOTE: Check if there is an Error in Selected Values											*/
 /************************************************************************************************/
-#define	PLLSource	 1
-#define Finput	25000000
+#define	PLLSource	 0
 
 /************************************************************************************************************************/
 /* Define  MCO1PRE: MCO1 PreScaler																						*/
@@ -193,6 +192,6 @@
 /*		10: PLL selected as system clock				2				*/
 /*		11: not allowed													*/
 /************************************************************************/
-#define SysClkSw	1
+#define SysClkSw	0
 
 #endif

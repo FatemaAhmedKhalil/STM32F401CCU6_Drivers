@@ -1,6 +1,6 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
-/************************************* Author: Fatema Ahmed  ***********************************/
+/*********************************** Author: Fatema Ahmed **************************************/
 /***************************************** Layer: MCAL *****************************************/
 /****************************************** SWC: GPIO ******************************************/
 /**************************************** Version: 1.00 ****************************************/
@@ -174,16 +174,16 @@ u8 GPIO_u8SetPortValue (u8 u8Port, u8 u8Value)
 	return u8ErrorState;
 }
 
-u8 GPIO_u8GetPinValue (u8 u8Port, u8 u8Pin, u8* pu8Value)
+u8 GPIO_u8GetPinValue (u8 u8Port, u8 u8Pin, u8* ptru8Value)
 {
 	u8 u8ErrorState = 0;
-	if ( ( (u8Port == GPIO_PORTA && u8Pin <= GPIO_PIN15 ) || (u8Port == GPIO_PORTB && u8Pin <= GPIO_PIN15 ) || ( u8Port == GPIO_PORTC && ( u8Pin >= GPIO_PIN13 ||  u8Pin <= GPIO_PIN15 ) ) ) && pu8Value != 0 ) // Check Ranges
+	if ( ( (u8Port == GPIO_PORTA && u8Pin <= GPIO_PIN15 ) || (u8Port == GPIO_PORTB && u8Pin <= GPIO_PIN15 ) || ( u8Port == GPIO_PORTC && ( u8Pin >= GPIO_PIN13 ||  u8Pin <= GPIO_PIN15 ) ) ) && ptru8Value != 0 ) // Check Ranges
 	{
 		switch (u8Port)
 		{
-			case GPIO_PORTA: *pu8Value = GET_BIT(GPIOA->IDR, u8Pin); break;
-			case GPIO_PORTB: *pu8Value = GET_BIT(GPIOB->IDR, u8Pin); break;
-			case GPIO_PORTC: *pu8Value = GET_BIT(GPIOC->IDR, u8Pin); break;
+			case GPIO_PORTA: *ptru8Value = GET_BIT(GPIOA->IDR, u8Pin); break;
+			case GPIO_PORTB: *ptru8Value = GET_BIT(GPIOB->IDR, u8Pin); break;
+			case GPIO_PORTC: *ptru8Value = GET_BIT(GPIOC->IDR, u8Pin); break;
 			default: u8ErrorState = GPIO_ErrorCheckPerphiralRange; break;
 		}
 	}

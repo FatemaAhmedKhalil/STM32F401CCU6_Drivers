@@ -65,7 +65,7 @@ void USART_Disable(USART_MemoryMap *USARTx)
 
 void USART_voidTransmitByte (USART_MemoryMap *USARTx, u8 u8Byte)
 {
-	while ( GET_BIT(USARTx->SR, TXE) == 0 );
+//	while ( GET_BIT(USARTx->SR, TXE) == 0 );
 		
 	USARTx->DR = u8Byte;
 	
@@ -82,6 +82,15 @@ void USART_voidTransmitString (USART_MemoryMap *USARTx, u8 *ptru8String )
 	{
 		USART_voidTransmitByte(USARTx, ptru8String[Iterator]);
 		Iterator++;
+	}
+}
+
+void USART_u8TransmitArraySynch(USART_MemoryMap *USARTx, u8* ptru8DataArray, u32 u32Length)
+{
+	if ( ptru8DataArray != NULL )
+	{
+       for (u8 Counter = 0 ; (ptru8DataArray[Counter] != '\0') || (Counter <= u32Length); Counter++ )
+    	   USART_voidTransmitByte(USARTx , ptru8DataArray[Counter]);
 	}
 }
 
@@ -111,6 +120,15 @@ u8 USART_u8ReceiveByteSynchBlocking ( USART_MemoryMap *USARTx )
 	Data = USARTx->DR;
 
 	return Data;
+}
+
+u8 USART_u8CheckReceived ( USART_MemoryMap *USARTx )
+{
+
+	if ( ( GET_BIT(USARTx->SR, RXNE) == 1 ) )
+		return 1;
+	else
+		return 0;
 }
 
 void USART_RxInterruptStatus(USART_MemoryMap *USARTx, u8 u8Status)

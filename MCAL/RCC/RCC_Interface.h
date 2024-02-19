@@ -7,16 +7,25 @@
 /***********************************************************************************************/
 /***********************************************************************************************/
 
-#ifndef RCC_INTERFACE_H_
-#define RCC_INTERFACE_H_
+#ifndef RCC_Interface
+#define RCC_Interface
 
-/** Error States **/
-#define RCC_ErrorPerphiralRangeRCC	1
+/************ Error States ************/
+#define RCC_ErrorPeripheralRangeRCC	1
 #define RCC_ErrorBusRangeRCC		2
 #define RCC_ErrorConfigPLLRCC		3
 
-
-u8 RCC_u8SystemClkInitialization (void);
+/********************************************************************************************************************
+* @fn             : RCC_u8SystemClkInitialization
+* @brief          : System RCC Clock Initialization
+* @param[in]      :
+* @retval         :
+**********************************************************************************************************************
+* @attention
+* Configurations at RCC_Config.h
+*
+**********************************************************************************************************************/
+void RCC_u8SystemClkInitialization (void);
 
 /****************************************************/
 /* Define											*/
@@ -26,13 +35,14 @@ u8 RCC_u8SystemClkInitialization (void);
 /* 				- APB1								*/
 /* 				- APB2								*/
 /****************************************************/
-#define	RCC_AHB1	1
-#define	RCC_AHB2	2
-#define	RCC_APB1	3
-#define	RCC_APB2	4
+#define	RCC_AHB1		1
+#define	RCC_AHB2		2
+#define	RCC_APB1		3
+#define	RCC_APB2		4
+#define RCC_AHB1LPENR	5
 
 /************************************************************************************/
-/* Define 																			*/
+/* Define RCC Peripheral															*/
 /*		1) RCC AHB1 peripheral clock enable\disable register						*/
 /*			  *** PORTS Enable\Disable ***											*/
 /* 				GPIOA --> Perphiral = 0												*/
@@ -68,39 +78,66 @@ u8 RCC_u8SystemClkInitialization (void);
 /* 				TIM9 --> Perphiral = 16												*/
 /* 				TIM10 --> Perphiral = 17											*/
 /* 				TIM11 --> Perphiral = 18											*/
+/*		5) RCC AHB1LPENR peripheral clock enable in low power mode register			*/
+/*				FLITFLPEN --> Perphiral = 15										*/
+//						Flash interface clock enable during Sleep mode				*/
 /************************************************************************************/
-#define RCC_GPIOA	 0
-#define RCC_GPIOB	 1
-#define RCC_GPIOC	 2
+#define RCC_GPIOA	 	0
+#define RCC_GPIOB	 	1
+#define RCC_GPIOC	 	2
 
-#define RCC_OTGFS	7
+#define RCC_OTGFS		7
 
-#define RCC_TIM2	0
-#define RCC_TIM3	1
-#define RCC_TIM4	2
-#define RCC_TIM5	3
-#define RCC_WWDG	11
-#define RCC_SPI2	14
-#define RCC_SPI3	15
-#define RCC_USART2	17
-#define RCC_I2C1	21
-#define RCC_I2C2	22
-#define RCC_I2C3	23
-#define RCC_PWR		28
+#define RCC_TIM2		0
+#define RCC_TIM3		1
+#define RCC_TIM4		2
+#define RCC_TIM5		3
+#define RCC_WWDG		11
+#define RCC_SPI2		14
+#define RCC_SPI3		15
+#define RCC_USART2		17
+#define RCC_I2C1		21
+#define RCC_I2C2		22
+#define RCC_I2C3		23
+#define RCC_PWR			28
 
-#define RCC_TIM1	0
-#define RCC_USART1	4
-#define RCC_USART6	5
-#define RCC_ADC1	8
-#define RCC_SDIO	11
-#define RCC_SPI1	12
-#define RCC_SPI4	13
-#define RCC_SYSCFG	14
-#define RCC_TIM9	16
-#define RCC_TIM10	17
-#define RCC_TIM11	18
+#define RCC_TIM1		0
+#define RCC_USART1		4
+#define RCC_USART6		5
+#define RCC_ADC1		8
+#define RCC_SDIO		11
+#define RCC_SPI1		12
+#define RCC_SPI4		13
+#define RCC_SYSCFG		14
+#define RCC_TIM9		16
+#define RCC_TIM10		17
+#define RCC_TIM11		18
 
-u8 RCC_u8Enable (u8 u8Bus, u8 u8Perphiral);
-u8 RCC_u8Disable (u8 u8Bus, u8 u8Perphiral);
+#define RCC_FLITFLPEN	15
+/********************************************************************************************************************
+* @fn             : RCC_u8Enable
+* @brief          : Enable Peripheral
+* @param[in]      : u8Bus  --> get option from RCC Bus
+* @param[in]      : u8Perphiral  --> get option from 'RCC Peripheral' defines
+* @retval         : Error State
+**********************************************************************************************************************
+* @attention
+*
+*
+**********************************************************************************************************************/
+u8 RCC_u8Enable (u8 u8Bus, u8 u8Peripheral);
+
+/********************************************************************************************************************
+* @fn             : RCC_u8Disable
+* @brief          : Disable Peripheral
+* @param[in]      : u8Bus  --> get option from RCC Bus
+* @param[in]      : u8Perphiral  --> get option from 'RCC Peripheral' defines
+* @retval         : Error State
+**********************************************************************************************************************
+* @attention
+*
+*
+**********************************************************************************************************************/
+u8 RCC_u8Disable (u8 u8Bus, u8 u8Peripheral);
 
 #endif

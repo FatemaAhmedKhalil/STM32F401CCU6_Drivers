@@ -16,9 +16,8 @@
 #include "RCC_Interface.h"
 
 
-u8 RCC_u8SystemClkInitialization (void)
+void RCC_u8SystemClkInitialization (void)
 {
-	u8 u8ErrorState = 0;
 	/** Initialize CSS **/
 	#if CSSBit == 1
 	SET_BIT(RCC->CR, CSSON);
@@ -257,15 +256,6 @@ u8 RCC_u8SystemClkInitialization (void)
 	#else
 	#error "Wrong PLLSRC Configuration"
 	#endif
-	
-	u32 Fvco = MultiplicationPLLN/DivisionPLLM;
-	u32 Fpll = (Finput*Fvco)/DivisionPLLP;
-
-	if (Fpll > 84000000)	// Check Generated System Clock Range
-	{
-		u8ErrorState = RCC_ErrorConfigPLLRCC;
-		return u8ErrorState;
-	}
 
 	/** Initialize MCO1PRE **/
 	#if MCO1PreScaler == 0
@@ -382,49 +372,49 @@ u8 RCC_u8SystemClkInitialization (void)
 	#else
 	#error "Wrong SW Configuration"
 	#endif
-
-	return u8ErrorState;
 }
 
-u8 RCC_u8Enable (u8 u8Bus, u8 u8Perphiral)
+u8 RCC_u8Enable (u8 u8Bus, u8 u8Peripheral)
 {
 	u8 u8ErrorState = 0;
 	
-	if(u8Perphiral < 32) // Check Range
+	if(u8Peripheral < 32) // Check Range
 	{
 		switch (u8Bus)
 		{
-			case RCC_AHB1: SET_BIT(RCC->AHB1ENR, u8Perphiral); break;
-			case RCC_AHB2: SET_BIT(RCC->AHB2ENR, u8Perphiral); break;
-			case RCC_APB1: SET_BIT(RCC->APB1ENR, u8Perphiral); break;
-			case RCC_APB2: SET_BIT(RCC->APB2ENR, u8Perphiral); break;
+			case RCC_AHB1: SET_BIT(RCC->AHB1ENR, u8Peripheral); break;
+			case RCC_AHB2: SET_BIT(RCC->AHB2ENR, u8Peripheral); break;
+			case RCC_APB1: SET_BIT(RCC->APB1ENR, u8Peripheral); break;
+			case RCC_APB2: SET_BIT(RCC->APB2ENR, u8Peripheral); break;
+			case RCC_AHB1LPENR: SET_BIT(RCC->AHB1LPENR, u8Peripheral); break;
 			default: u8ErrorState = RCC_ErrorBusRangeRCC; break;
 		}
 	}
 	
 	else
-		u8ErrorState = RCC_ErrorPerphiralRangeRCC; // Out of Range
+		u8ErrorState = RCC_ErrorPeripheralRangeRCC; // Out of Range
 		
 	return u8ErrorState;
 }
-u8 RCC_u8Disable (u8 u8Bus, u8 u8Perphiral)
+u8 RCC_u8Disable (u8 u8Bus, u8 u8Peripheral)
 {
 	u8 u8ErrorState = 0;
 	
-	if(u8Perphiral < 32) // Check Range
+	if(u8Peripheral < 32) // Check Range
 	{
 		switch (u8Bus)
 		{
-			case RCC_AHB1: CLR_BIT(RCC->AHB1ENR, u8Perphiral); break;
-			case RCC_AHB2: CLR_BIT(RCC->AHB2ENR, u8Perphiral); break;
-			case RCC_APB1: CLR_BIT(RCC->APB1ENR, u8Perphiral); break;
-			case RCC_APB2: CLR_BIT(RCC->APB2ENR, u8Perphiral); break;
+			case RCC_AHB1: CLR_BIT(RCC->AHB1ENR, u8Peripheral); break;
+			case RCC_AHB2: CLR_BIT(RCC->AHB2ENR, u8Peripheral); break;
+			case RCC_APB1: CLR_BIT(RCC->APB1ENR, u8Peripheral); break;
+			case RCC_APB2: CLR_BIT(RCC->APB2ENR, u8Peripheral); break;
+			case RCC_AHB1LPENR: CLR_BIT(RCC->AHB1LPENR, u8Peripheral); break;
 			default: u8ErrorState = RCC_ErrorBusRangeRCC; break;
 		}
 	}
 	
 	else 
-		u8ErrorState = RCC_ErrorPerphiralRangeRCC; // Out of Range
+		u8ErrorState = RCC_ErrorPeripheralRangeRCC; // Out of Range
 	
 	return u8ErrorState;
 }
